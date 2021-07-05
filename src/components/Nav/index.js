@@ -1,6 +1,6 @@
 import logo from '../../logo.svg';
 
-function Header() {
+function Nav() {
 	return (
 		<div className='h-20 bg-gray-800 text-white px-8 py-4 text-lg'>
 			<div
@@ -15,4 +15,4 @@ function Header() {
 	);
 }
 
-export default Header;
+export default Nav;

@@ -1,12 +1,12 @@
-import Header from './components/Header';
+import Footer from './components/Footer';
+import Nav from './components/Nav';
 import Jumbotron from './components/Jumbotron';
-import Subheader from './components/Subheader';
 import logo from './logo.svg';
 
 function App() {
 	return (
 		<div className='App flex flex-col h-screen justify-between'>
-			<Header />
+			<Nav />
 			<Jumbotron />
 			<header className='App-header'>
 				<img src={logo} className='App-logo max-h-48' alt='logo' />
@@ -22,6 +22,7 @@ function App() {
 					Learn React
 				</a>
 			</header>
+			<Footer />
 		</div>
 	);
 }
