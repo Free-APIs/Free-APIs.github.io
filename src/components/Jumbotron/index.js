@@ -1,5 +1,5 @@
 import logo from '../../logo.svg';
-import Subheader from '../Subheader';
+import Subtitle from '../Subtitle';
 import ButtonRows from './ButtonRows';
 
 function Jumbotron() {
@@ -10,11 +10,11 @@ function Jumbotron() {
 		>
 			<div
 				className='text-6xl xs:text-7xl sm:text-8xl font-bold
-                text-center mb-8 mt-12'
+                text-center mb-6 mt-12'
 			>
 				Free APIs
 			</div>
-			<Subheader />
+			<Subtitle />
 			<img src={logo} className='max-h-96' alt='placeholdersvg' />
 			<ButtonRows />
 		</div>
