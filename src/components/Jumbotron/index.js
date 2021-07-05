@@ -10,12 +10,12 @@ function Jumbotron() {
 		>
 			<div
 				className='text-6xl xs:text-7xl sm:text-8xl font-bold
-                text-center mb-8 mt-16'
+                text-center mb-8 mt-12'
 			>
 				Free APIs
 			</div>
 			<Subheader />
-			<img src={logo} className='h-96' alt='placeholdersvg' />
+			<img src={logo} className='max-h-96' alt='placeholdersvg' />
 			<ButtonRows />
 		</div>
 	);
