@@ -1,14 +1,11 @@
-import Footer from './components/Footer';
-import Nav from './components/Nav';
-import Jumbotron from './components/Jumbotron';
+import { Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
 	return (
-		<div className='App flex flex-col h-screen justify-between'>
-			<Nav />
-			<Jumbotron />
-			<Footer />
-		</div>
+		<Switch key={'switch'}>
+			<Route exact path='/' key='home' component={Home} />
+		</Switch>
 	);
 }
 
