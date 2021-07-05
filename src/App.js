@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Jumbotron from './components/Jumbotron';
+import Subheader from './components/Subheader';
 import logo from './logo.svg';
 
 function App() {

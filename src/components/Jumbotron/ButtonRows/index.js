@@ -1,6 +1,6 @@
 import Button from '../../Button';
 
-function ButtonRow() {
+function ButtonRows() {
 	return (
 		<div className='w-full flex justify-center items-center'>
 			<Button>Browse to get inspired</Button>
@@ -9,4 +9,4 @@ function ButtonRow() {
 	);
 }
 
-export default ButtonRow;
+export default ButtonRows;
