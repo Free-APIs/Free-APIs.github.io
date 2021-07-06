@@ -1,5 +1,7 @@
-function Component() {
-	return <div></div>;
+import Template from '../Template';
+
+function Category() {
+	return <Template />;
 }
 
-export default Component;
+export default Category;

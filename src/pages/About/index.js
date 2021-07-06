@@ -1,5 +1,7 @@
+import Template from '../Template';
+
 function About() {
-	return <div></div>;
+	return <Template about />;
 }
 
 export default About;

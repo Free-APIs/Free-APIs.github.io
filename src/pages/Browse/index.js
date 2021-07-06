@@ -1,5 +1,7 @@
+import Template from '../Template';
+
 function Browse() {
-	return <div></div>;
+	return <Template />;
 }
 
 export default Browse;
