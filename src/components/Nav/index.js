@@ -1,4 +1,5 @@
 import logo from '../../logo.svg';
+import { Link } from 'react-router-dom';
 
 function Nav() {
 	return (
@@ -11,15 +12,21 @@ function Nav() {
                 ml-auto mr-auto'
 			>
 				<img src={logo} className='h-full' alt='placeholdersvg' />
-				<p
+				<Link
+					to='/browse'
 					className='text-white hover:text-gray-300 hidden xs:block
                     cursor-pointer'
 				>
 					Browse APIs
-				</p>
-				<p className='text-white hover:text-gray-300 cursor-pointer'>
+				</Link>
+				<a
+					href='https://google.com'
+					target='_blank'
+					rel='noreferrer'
+					className='text-white hover:text-gray-300 cursor-pointer'
+				>
 					GitHub
-				</p>
+				</a>
 			</div>
 		</div>
 	);
