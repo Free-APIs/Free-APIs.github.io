@@ -1,14 +1,11 @@
-import Footer from '../../components/Footer';
-import Nav from '../../components/Nav';
 import Jumbotron from '../../components/Jumbotron';
+import Template from '../Template';
 
 function Home() {
 	return (
-		<div className='App flex flex-col h-screen justify-between'>
-			<Nav />
+		<Template>
 			<Jumbotron />
-			<Footer />
-		</div>
+		</Template>
 	);
 }
 
