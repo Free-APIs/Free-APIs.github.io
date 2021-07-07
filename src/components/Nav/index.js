@@ -11,7 +11,9 @@ function Nav() {
 				className='flex max-w-3xl justify-between items-center h-full
                 ml-auto mr-auto'
 			>
-				<img src={logo} className='h-full' alt='placeholdersvg' />
+				<Link to='/' className='h-full'>
+					<img src={logo} className='h-full' alt='placeholdersvg' />
+				</Link>
 				<Link
 					to='/browse'
 					className='text-white hover:text-gray-300 hidden xs:block
