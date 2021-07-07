@@ -20,7 +20,6 @@ function Browse() {
 				.then(
 					(data) => {
 						onSetResult(data);
-						console.log('pulling');
 						setIsLoaded(true);
 					},
 					(error) => {
@@ -31,14 +30,12 @@ function Browse() {
 		} else {
 			setApis(JSON.stringify(cached));
 			setIsLoaded(true);
-			console.log('cache hit');
 		}
 	}, [query]);
 
 	const onSetResult = (result) => {
 		sessionStorage.setItem('data', JSON.stringify(result));
 		setApis(result);
-		console.log(result);
 	};
 
 	const output = () => {
@@ -51,15 +48,7 @@ function Browse() {
 		}
 	};
 
-	console.log(output());
-
-	return (
-		<Template>
-			<div onClick={() => setQuery((c) => c + 1)}>
-				{JSON.stringify(output())}
-			</div>
-		</Template>
-	);
+	return <Template />;
 }
 
 export default Browse;
