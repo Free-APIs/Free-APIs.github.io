@@ -1,6 +1,7 @@
 import Template from '../Template';
 import { useEffect, useState } from 'react';
 // import DataStore from '../../components/DataStore';
+import ListDisplay from '../../components/ListDisplay';
 
 function Browse() {
 	const [apis, setApis] = useState();
@@ -48,7 +49,17 @@ function Browse() {
 		}
 	};
 
-	return <Template />;
+	if (error) {
+		return 'Error occurred';
+	} else if (!isLoaded) {
+		return 'loading screen';
+	} else {
+		return (
+			<Template>
+				<ListDisplay />
+			</Template>
+		);
+	}
 }
 
 export default Browse;
