@@ -6,7 +6,7 @@ function ListDisplay(props) {
 	return (
 		<div
 			className='h-auto bg-gray-300 flex justify-center
-            items-center flex-1 flex-wrap p-6'
+            flex-1 flex-wrap p-6'
 		>
 			{listItems.map((api) => (
 				<Card>{api}</Card>
