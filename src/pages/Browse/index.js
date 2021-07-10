@@ -39,16 +39,6 @@ function Browse() {
 		setApis(result);
 	};
 
-	const output = () => {
-		if (error) {
-			return 'Error occurred';
-		} else if (!isLoaded) {
-			return 'isLoading';
-		} else {
-			return apis;
-		}
-	};
-
 	if (error) {
 		return 'Error occurred';
 	} else if (!isLoaded) {
