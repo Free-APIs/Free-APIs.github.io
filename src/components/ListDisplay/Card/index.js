@@ -3,22 +3,28 @@ function Card(props) {
 	const description = props.children['Description'];
 	const link = props.children['Link'];
 	const category = props.children['Category'];
-	let auth, cors;
+	let auth, cors, authColor, corsColor;
 
 	if (props.children['Auth'] === '') {
 		auth = 'No authorization';
+		authColor = <div className='table-cell w-12 bg-green-500' />;
 	} else if (props.children['Auth'] === 'apiKey') {
-		auth = 'API Key';
+		auth = 'API key authorization';
+		authColor = <div className='table-cell w-12 bg-blue-500' />;
 	} else {
-		auth = 'OAuth';
+		auth = 'OAuth authorization';
+		authColor = <div className='table-cell w-12 bg-purple-500' />;
 	}
 
 	if (props.children['Cors'] === 'yes') {
-		cors = 'CORS';
+		cors = 'CORS available';
+		corsColor = <div className='table-cell w-12 bg-green-500' />;
 	} else if (props.children['Cors' === 'no']) {
-		cors = 'No CORS';
+		cors = 'CORS unavailable';
+		corsColor = <div className='table-cell w-12 bg-red-500' />;
 	} else {
-		cors = 'CORS Unknown';
+		cors = 'CORS unknown';
+		corsColor = <div className='table-cell w-12 bg-yellow-500' />;
 	}
 
 	return (
@@ -26,18 +32,32 @@ function Card(props) {
 			href={link}
 			target='_blank'
 			rel='noreferrer'
-			className='rounded-lg bg-gray-200 p-4 m-3 shadow-lg break-words w-80
-            hover:shadow-xl hover:bg-gray-100'
+			className='rounded-lg bg-gray-200 p-4 m-3 shadow-lg break-words w-72
+            hover:shadow-xl hover:bg-gray-100 flex flex-col justify-between'
 		>
-			<div className='text-3xl text-gray-900 text-bold pb-2'>{title}</div>
-			<div className='text-lg text-gray-600 italic pb-3'>
-				{description}
+			<div>
+				<div className='text-2xl text-gray-900 font-bold pb-2'>
+					{title}
+				</div>
+				<div className='text-lg text-gray-600 italic pb-3'>
+					{description}
+				</div>
 			</div>
-			<div className='text-lg text-gray-800'>
-				<p>{auth}</p>
-				<p>{cors}</p>
-				<p>{link}</p>
-				<p>{category}</p>
+			<div className='text-lg text-gray-800 table w-full'>
+				<div className='table-row'>
+					<div className='table-cell py-1'>{auth}</div>
+					{authColor}
+				</div>
+				<div className='table-row h-1' />
+				<div className='table-row h-0.5 bg-gray-500'>
+					<div className='table-cell' />
+					<div className='table-cell' />
+				</div>
+				<div className='table-row h-1' />
+				<div className='table-row'>
+					<div className='table-cell py-1'>{cors}</div>
+					{corsColor}
+				</div>
 			</div>
 		</a>
 	);
