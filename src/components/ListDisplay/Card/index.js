@@ -48,12 +48,7 @@ function Card(props) {
 					<div className='table-cell py-1'>{auth}</div>
 					{authColor}
 				</div>
-				<div className='table-row h-1' />
-				<div className='table-row h-0.5 bg-gray-500'>
-					<div className='table-cell' />
-					<div className='table-cell' />
-				</div>
-				<div className='table-row h-1' />
+				<div className='table-row h-2' />
 				<div className='table-row'>
 					<div className='table-cell py-1'>{cors}</div>
 					{corsColor}
