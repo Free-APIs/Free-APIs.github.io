@@ -5,7 +5,7 @@ function Nav() {
 	return (
 		<div
 			className='h-20 bg-gradient-to-r from-gray-800 to-gray-900
-            px-8 py-4 text-lg'
+            px-8 py-4 text-lg flex-none'
 		>
 			<div
 				className='flex max-w-3xl justify-between items-center h-full

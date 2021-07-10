@@ -29,14 +29,19 @@ function Browse() {
 					},
 				);
 		} else {
-			setApis(JSON.stringify(cached));
+			setApis(JSON.parse(cached));
 			setIsLoaded(true);
 		}
 	}, [query]);
 
 	const onSetResult = (result) => {
-		sessionStorage.setItem('data', JSON.stringify(result));
-		setApis(result);
+		let value = result['entries'];
+		const unique = [
+			...new Map(value.map((api) => [api['API'], api])).values(),
+		];
+		const uniqueString = JSON.stringify(unique);
+		sessionStorage.setItem('data', uniqueString);
+		setApis(unique);
 	};
 
 	if (error) {
@@ -46,7 +51,7 @@ function Browse() {
 	} else {
 		return (
 			<Template>
-				<ListDisplay />
+				<ListDisplay>{apis}</ListDisplay>
 			</Template>
 		);
 	}
