@@ -3,7 +3,7 @@ function Card(props) {
 	const description = props.children['Description'];
 	const link = props.children['Link'];
 	const category = props.children['Category'];
-	let auth, cors, authColor, corsColor;
+	let auth, cors, https, authColor, corsColor, httpsColor;
 
 	if (props.children['Auth'] === '') {
 		auth = 'No authorization';
@@ -19,12 +19,20 @@ function Card(props) {
 	if (props.children['Cors'] === 'yes') {
 		cors = 'CORS available';
 		corsColor = <div className='table-cell w-12 bg-green-500' />;
-	} else if (props.children['Cors' === 'no']) {
+	} else if (props.children['Cors'] === 'no') {
 		cors = 'CORS unavailable';
 		corsColor = <div className='table-cell w-12 bg-red-500' />;
 	} else {
 		cors = 'CORS unknown';
 		corsColor = <div className='table-cell w-12 bg-yellow-500' />;
+	}
+
+	if (props.children['HTTPS'] === true) {
+		https = 'HTTPS available';
+		httpsColor = <div className='table-cell w-12 bg-green-500' />;
+	} else {
+		https = 'HTTPS unavailable';
+		httpsColor = <div className='table-cell w-12 bg-red-500' />;
 	}
 
 	return (
@@ -47,6 +55,11 @@ function Card(props) {
 				<div className='table-row'>
 					<div className='table-cell py-1'>{auth}</div>
 					{authColor}
+				</div>
+				<div className='table-row h-2' />
+				<div className='table-row'>
+					<div className='table-cell py-1'>{https}</div>
+					{httpsColor}
 				</div>
 				<div className='table-row h-2' />
 				<div className='table-row'>

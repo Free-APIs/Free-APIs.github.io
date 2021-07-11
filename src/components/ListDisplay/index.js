@@ -12,7 +12,7 @@ function ListDisplay(props) {
 				<button onClick={props.shuffle}>Shuffle</button>
 				<button onClick={props.reset}>Reset</button>
 				{listItems.map((api) => (
-					<Card>{api}</Card>
+					<Card key={api['API']}>{api}</Card>
 				))}
 			</div>
 		</div>
