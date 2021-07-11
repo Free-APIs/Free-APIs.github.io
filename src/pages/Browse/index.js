@@ -32,7 +32,7 @@ function Browse() {
 			setApis(JSON.parse(cached));
 			setIsLoaded(true);
 		}
-	}, [query]);
+	}, []);
 
 	const onSetResult = (result) => {
 		let value = result['entries'];
@@ -44,6 +44,19 @@ function Browse() {
 		setApis(unique);
 	};
 
+	const shuffle = () => {
+		let shuffled = apis;
+		for (let i = shuffled.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+		}
+		setApis([...shuffled]);
+	};
+
+	const reset = () => {
+		setApis(JSON.parse(sessionStorage.getItem('data')));
+	};
+
 	if (error) {
 		return 'Error occurred';
 	} else if (!isLoaded) {
@@ -51,7 +64,9 @@ function Browse() {
 	} else {
 		return (
 			<Template>
-				<ListDisplay>{apis}</ListDisplay>
+				<ListDisplay shuffle={shuffle} reset={reset}>
+					{apis}
+				</ListDisplay>
 			</Template>
 		);
 	}

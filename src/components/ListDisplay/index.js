@@ -9,6 +9,8 @@ function ListDisplay(props) {
 				className='max-w-screen-2xl flex flex-1 flex-wrap 
             justify-center'
 			>
+				<button onClick={props.shuffle}>Shuffle</button>
+				<button onClick={props.reset}>Reset</button>
 				{listItems.map((api) => (
 					<Card>{api}</Card>
 				))}
