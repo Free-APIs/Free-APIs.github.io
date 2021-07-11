@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import ListDisplay from '../../components/ListDisplay';
 
 function Browse() {
-	const [apis, setApis] = useState();
-	const [query, setQuery] = useState(0);
+	const [apis, setApis] = useState([]);
+	const [displayList, setDisplayList] = useState([]);
+	const [searchText, setSearchText] = useState('');
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 
@@ -57,6 +58,18 @@ function Browse() {
 		setApis(JSON.parse(sessionStorage.getItem('data')));
 	};
 
+	useEffect(() => {
+		const matches = (list) => {
+			return (
+				list['API'].toLowerCase().includes(searchText.toLowerCase()) ||
+				list['Description']
+					.toLowerCase()
+					.includes(searchText.toLowerCase())
+			);
+		};
+		setDisplayList(apis.filter(matches));
+	}, [searchText, apis]);
+
 	if (error) {
 		return 'Error occurred';
 	} else if (!isLoaded) {
@@ -64,8 +77,12 @@ function Browse() {
 	} else {
 		return (
 			<Template>
+				<input
+					placeholder='placeholder'
+					onChange={(e) => setSearchText(e.target.value)}
+				/>
 				<ListDisplay shuffle={shuffle} reset={reset}>
-					{apis}
+					{displayList}
 				</ListDisplay>
 			</Template>
 		);
