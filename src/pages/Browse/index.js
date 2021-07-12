@@ -1,7 +1,8 @@
 import Template from '../Template';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 // import DataStore from '../../components/DataStore';
 import ListDisplay from '../../components/ListDisplay';
+import { debounce } from 'lodash';
 
 function Browse() {
 	const [apis, setApis] = useState([]);
@@ -58,6 +59,11 @@ function Browse() {
 		setApis(JSON.parse(sessionStorage.getItem('data')));
 	};
 
+	const handler = useCallback(
+		debounce((e) => setSearchText(e.target.value), 400),
+		[],
+	);
+
 	useEffect(() => {
 		const matches = (list) => {
 			return (
@@ -77,10 +83,7 @@ function Browse() {
 	} else {
 		return (
 			<Template>
-				<input
-					placeholder='placeholder'
-					onChange={(e) => setSearchText(e.target.value)}
-				/>
+				<input placeholder='placeholder' onChange={(e) => handler(e)} />
 				<ListDisplay shuffle={shuffle} reset={reset}>
 					{displayList}
 				</ListDisplay>
