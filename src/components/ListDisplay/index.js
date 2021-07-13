@@ -6,8 +6,15 @@ function ListDisplay(props) {
 
 	return (
 		<>
-			<OptionsRow shuffle={props.shuffle} reset={props.reset} />
-			<div className='h-auto bg-gray-300 flex justify-center p-2 xs:p-6'>
+			<OptionsRow
+				shuffle={props.shuffle}
+				reset={props.reset}
+				search={props.search}
+			/>
+			<div
+				className='bg-gray-300 flex flex-grow
+                justify-center p-2 xs:p-6'
+			>
 				<div
 					className='max-w-screen-2xl flex flex-1 flex-wrap 
                     justify-center'

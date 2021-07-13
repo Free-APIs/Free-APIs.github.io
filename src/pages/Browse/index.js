@@ -76,6 +76,15 @@ function Browse() {
 		setDisplayList(apis.filter(matches));
 	}, [searchText, apis]);
 
+	const searchBar = (
+		<input
+			placeholder='Search for an API'
+			onChange={(e) => handler(e)}
+			className='px-4 m-4 outline-none focus:ring rounded-lg shadow-lg
+            hover:shadow-xl focus:shadow-xl'
+		/>
+	);
+
 	if (error) {
 		return 'Error occurred';
 	} else if (!isLoaded) {
@@ -83,8 +92,7 @@ function Browse() {
 	} else {
 		return (
 			<Template>
-				<input placeholder='placeholder' onChange={(e) => handler(e)} />
-				<ListDisplay shuffle={shuffle} reset={reset}>
+				<ListDisplay shuffle={shuffle} reset={reset} search={searchBar}>
 					{displayList}
 				</ListDisplay>
 			</Template>
