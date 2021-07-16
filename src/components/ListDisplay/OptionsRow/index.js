@@ -6,6 +6,7 @@ function OptionsRow(props) {
 			<Button onClick={props.shuffle}>Shuffle APIs</Button>
 			<Button onClick={props.reset}>Reset</Button>
 			{props.search}
+			{props.select}
 		</div>
 	);
 }

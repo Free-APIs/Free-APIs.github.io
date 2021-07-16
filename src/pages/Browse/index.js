@@ -10,8 +10,10 @@ function Browse() {
 	const [searchText, setSearchText] = useState('');
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [sort, setSort] = useState('category');
+	const [sort, setSort] = useState('Category');
 	const [categories, setCategories] = useState([]);
+
+	const sortWays = ['Category', 'Alphabetical', 'Random'];
 
 	useEffect(() => {
 		setError(null);
@@ -78,10 +80,38 @@ function Browse() {
 			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
 		}
 		setApis([...shuffled]);
+		setSort('Random');
 	};
 
 	const reset = () => {
 		setApis(JSON.parse(sessionStorage.getItem('data')));
+		setSort('Category');
+	};
+
+	const alphabet = () => {
+		let sorted = apis;
+		sorted.sort((a, b) => a['API'].localeCompare(b['API']));
+		console.log(sorted);
+		setApis([...sorted]);
+		setSort('Alphabetical');
+	};
+
+	const handleSort = (action) => {
+		setSort(action);
+
+		switch (action) {
+			case 'Category':
+				reset();
+				break;
+			case 'Alphabetical':
+				alphabet();
+				break;
+			case 'Random':
+				shuffle();
+				break;
+			default:
+				break;
+		}
 	};
 
 	const handler = useCallback(
@@ -110,6 +140,22 @@ function Browse() {
 		/>
 	);
 
+	const select = (
+		<select
+			value={sort}
+			onChange={(e) => handleSort(e.target.value)}
+			className='px-4 m-4 outline-none focus:ring rounded-lg shadow-lg
+            hover:shadow-xl focus:shadow-xl bg-gray-200 hover:bg-gray-100
+            focus:bg-gray-100 cursor-pointer'
+		>
+			{sortWays.map((method) => (
+				<option key={method} value={method}>
+					Sort by: {method}
+				</option>
+			))}
+		</select>
+	);
+
 	if (error) {
 		return 'Error occurred';
 	} else if (!isLoaded) {
@@ -117,7 +163,12 @@ function Browse() {
 	} else {
 		return (
 			<Template>
-				<ListDisplay shuffle={shuffle} reset={reset} search={searchBar}>
+				<ListDisplay
+					shuffle={shuffle}
+					reset={reset}
+					search={searchBar}
+					select={select}
+				>
 					{displayList}
 				</ListDisplay>
 			</Template>

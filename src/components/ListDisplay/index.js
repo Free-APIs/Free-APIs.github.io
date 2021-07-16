@@ -10,6 +10,7 @@ function ListDisplay(props) {
 				shuffle={props.shuffle}
 				reset={props.reset}
 				search={props.search}
+				select={props.select}
 			/>
 			<div
 				className='bg-gray-300 flex flex-grow
