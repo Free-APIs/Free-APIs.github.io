@@ -10,19 +10,22 @@ function Browse() {
 	const [searchText, setSearchText] = useState('');
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [sort, setSort] = useState('category');
+	const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
 		setError(null);
 		setIsLoaded(false);
 
 		const cached = sessionStorage.getItem('data');
+		const categoryCached = sessionStorage.getItem('categories');
 
 		if (!cached) {
 			fetch('https://api.publicapis.org/entries')
 				.then((response) => response.json())
 				.then(
 					(data) => {
-						onSetResult(data);
+						onSetResult(data, true);
 						setIsLoaded(true);
 					},
 					(error) => {
@@ -34,16 +37,38 @@ function Browse() {
 			setApis(JSON.parse(cached));
 			setIsLoaded(true);
 		}
+
+		if (!categoryCached) {
+			fetch('https://api.publicapis.org/categories')
+				.then((response) => response.json())
+				.then(
+					(data) => {
+						onSetResult(data, false);
+					},
+					(error) => {
+						setError(error);
+						setIsLoaded(true);
+					},
+				);
+		} else {
+			setCategories(JSON.parse(categoryCached));
+			setIsLoaded(true);
+		}
 	}, []);
 
-	const onSetResult = (result) => {
-		let value = result['entries'];
-		const unique = [
-			...new Map(value.map((api) => [api['API'], api])).values(),
-		];
-		const uniqueString = JSON.stringify(unique);
-		sessionStorage.setItem('data', uniqueString);
-		setApis(unique);
+	const onSetResult = (result, isAPIs) => {
+		if (isAPIs) {
+			let value = result['entries'];
+			const unique = [
+				...new Map(value.map((api) => [api['API'], api])).values(),
+			];
+			const uniqueString = JSON.stringify(unique);
+			sessionStorage.setItem('data', uniqueString);
+			setApis(unique);
+		} else {
+			sessionStorage.setItem('categories', JSON.stringify(result));
+			setCategories(result);
+		}
 	};
 
 	const shuffle = () => {
