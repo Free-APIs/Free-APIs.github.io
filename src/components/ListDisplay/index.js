@@ -8,8 +8,9 @@ function ListDisplay(props) {
 	const header = (categoryTitle) => (
 		<div className='w-full flex'>
 			<div
-				className='mx-auto my-4 p-4 rounded-lg shadow-lg bg-gray-700
-                sm:text-xl lg:text-2xl xl:text-3xl text-gray-100 flex-none'
+				className='mx-auto mb-4 mt-6 p-4 rounded-lg shadow-lg 
+                bg-gray-700 sm:text-xl lg:text-2xl xl:text-3xl text-gray-100
+                flex-none'
 			>
 				{categoryTitle}
 			</div>
