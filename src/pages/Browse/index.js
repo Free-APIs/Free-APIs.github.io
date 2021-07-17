@@ -1,6 +1,5 @@
 import Template from '../Template';
 import { useEffect, useState, useCallback } from 'react';
-// import DataStore from '../../components/DataStore';
 import ListDisplay from '../../components/ListDisplay';
 import { debounce } from 'lodash';
 
@@ -91,7 +90,6 @@ function Browse() {
 	const alphabet = () => {
 		let sorted = apis;
 		sorted.sort((a, b) => a['API'].localeCompare(b['API']));
-		console.log(sorted);
 		setApis([...sorted]);
 		setSort('Alphabetical');
 	};

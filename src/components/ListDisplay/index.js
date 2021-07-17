@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Card from './Card';
 import OptionsRow from './OptionsRow';
 
@@ -30,12 +31,12 @@ function ListDisplay(props) {
 					let current = api['Category'];
 
 					let val = (
-						<>
+						<Fragment key={api['API']}>
 							{props.isCategory &&
 								previous !== current &&
 								header(current)}
 							<Card key={api['API']}>{api}</Card>
-						</>
+						</Fragment>
 					);
 
 					previous = current;
