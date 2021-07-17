@@ -169,7 +169,6 @@ function Browse() {
 					search={searchBar}
 					select={select}
 					isCategory={sort === 'Category'}
-					categories={categories}
 				>
 					{displayList}
 				</ListDisplay>

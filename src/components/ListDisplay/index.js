@@ -3,7 +3,6 @@ import OptionsRow from './OptionsRow';
 
 function ListDisplay(props) {
 	let listItems = props.children;
-	const categories = props.categories;
 
 	const header = (categoryTitle) => (
 		<div className='w-full flex'>
@@ -18,7 +17,6 @@ function ListDisplay(props) {
 
 	const output = () => {
 		listItems.sort((a, b) => a['Category'].localeCompare(b['Category']));
-		let count = -1;
 		let category = null;
 
 		return (
@@ -27,10 +25,7 @@ function ListDisplay(props) {
 					if (api['Category'] === category) {
 						return <Card key={api['API']}>{api}</Card>;
 					} else {
-						console.log(api['Category']);
-						console.log(category);
-						count++;
-						category = categories[count];
+						category = api['Category'];
 						return (
 							<>
 								{header(category)}
