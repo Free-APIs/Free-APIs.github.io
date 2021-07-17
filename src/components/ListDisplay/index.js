@@ -55,6 +55,7 @@ function ListDisplay(props) {
 				reset={props.reset}
 				search={props.search}
 				select={props.select}
+				numResults={props.numResults}
 			/>
 			<div className='flex flex-none justify-center bg-gray-300'>
 				<div

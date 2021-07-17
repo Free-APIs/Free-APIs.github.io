@@ -144,6 +144,7 @@ function Browse() {
 					search={searchBar}
 					select={select}
 					isCategory={sort === 'Category'}
+					numResults={displayList.length}
 				>
 					{displayList}
 				</ListDisplay>
