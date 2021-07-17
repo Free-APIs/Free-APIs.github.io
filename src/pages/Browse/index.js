@@ -110,7 +110,7 @@ function Browse() {
 			placeholder='Search for an API'
 			onChange={(e) => handler(e)}
 			className='px-4 m-4 outline-none focus:ring rounded-lg shadow-lg
-            hover:shadow-xl focus:shadow-xl h-10'
+            hover:shadow-xl focus:shadow-xl h-10 text-sm md:text-base'
 		/>
 	);
 
@@ -120,7 +120,7 @@ function Browse() {
 			onChange={(e) => handleSort(e.target.value)}
 			className='px-4 m-4 outline-none focus:ring rounded-lg shadow-lg
             hover:shadow-xl focus:shadow-xl bg-gray-200 hover:bg-gray-100
-            focus:bg-gray-100 cursor-pointer h-10'
+            focus:bg-gray-100 cursor-pointer h-10 text-sm md:text-base'
 		>
 			{sortWays.map((method) => (
 				<option key={method} value={method}>
