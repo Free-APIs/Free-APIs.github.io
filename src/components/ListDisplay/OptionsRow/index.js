@@ -12,7 +12,7 @@ function OptionsRow(props) {
 			text = `${props.numResults} results found`;
 		}
 
-		return <div className='m-2'>{text}</div>;
+		return <div className='m-2 text-sm md:text-base'>{text}</div>;
 	};
 	return (
 		<div
