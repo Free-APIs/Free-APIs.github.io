@@ -6,10 +6,10 @@ function ListDisplay(props) {
 	const categories = props.categories;
 
 	const header = (categoryTitle) => (
-		<div className='flex w-full'>
+		<div className='w-full flex'>
 			<div
 				className='mx-auto my-4 p-4 rounded-lg shadow-lg bg-gray-700
-                sm:text-xl lg:text-2xl xl:text-3xl text-gray-100'
+                sm:text-xl lg:text-2xl xl:text-3xl text-gray-100 flex-none'
 			>
 				{categoryTitle}
 			</div>
@@ -52,17 +52,15 @@ function ListDisplay(props) {
 					search={props.search}
 					select={props.select}
 				/>
-				<div
-					className='bg-gray-300 flex flex-grow
-                    justify-center p-2 xs:p-6'
-				>
+				<div className='flex flex-none justify-center bg-gray-300'>
 					<div
-						className='max-w-screen-2xl flex flex-1 flex-wrap 
-                        justify-center'
+						className='max-w-screen-2xl flex flex-initial flex-wrap 
+                        justify-center p2 xs:p-6'
 					>
 						{output()}
 					</div>
 				</div>
+				<div className='flex flex-grow bg-gray-300' />
 			</>
 		);
 	} else {

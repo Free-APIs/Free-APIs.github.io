@@ -41,8 +41,7 @@ function Card(props) {
 			target='_blank'
 			rel='noreferrer'
 			className='rounded-lg bg-gray-200 p-4 m-3 shadow-lg break-words w-72
-            hover:shadow-xl hover:bg-gray-100 flex flex-col justify-between 
-            max-h-96'
+            hover:shadow-xl hover:bg-gray-100 flex flex-col justify-between'
 		>
 			<div>
 				<div className='text-2xl text-gray-900 font-bold pb-2'>
