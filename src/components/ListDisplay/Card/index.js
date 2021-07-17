@@ -2,7 +2,6 @@ function Card(props) {
 	const title = props.children['API'];
 	const description = props.children['Description'];
 	const link = props.children['Link'];
-	const category = props.children['Category'];
 	let auth, cors, https, authColor, corsColor, httpsColor;
 
 	if (props.children['Auth'] === '') {
