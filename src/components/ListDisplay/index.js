@@ -55,17 +55,15 @@ function ListDisplay(props) {
 				search={props.search}
 				select={props.select}
 			/>
-			<div
-				className='bg-gray-300 flex flex-grow
-                justify-center p-2 xs:p-6'
-			>
+			<div className='flex flex-none justify-center bg-gray-300'>
 				<div
 					className='max-w-screen-2xl flex flex-1 flex-wrap 
-                    justify-center'
+                        justify-center p2 xs:p-6'
 				>
 					{output()}
 				</div>
 			</div>
+			<div className='flex flex-grow bg-gray-300' />
 		</>
 	);
 }
