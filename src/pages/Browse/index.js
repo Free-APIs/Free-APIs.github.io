@@ -2,6 +2,7 @@ import Template from '../Template';
 import { useEffect, useState, useCallback } from 'react';
 import ListDisplay from '../../components/ListDisplay';
 import { debounce } from 'lodash';
+import ScrollUp from '../../components/ScrollUp';
 
 function Browse() {
 	const [apis, setApis] = useState([]);
@@ -146,6 +147,7 @@ function Browse() {
 				>
 					{displayList}
 				</ListDisplay>
+				<ScrollUp />
 			</Template>
 		);
 	}
