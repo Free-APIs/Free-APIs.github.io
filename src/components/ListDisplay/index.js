@@ -16,73 +16,57 @@ function ListDisplay(props) {
 	);
 
 	const output = () => {
-		listItems.sort((a, b) => a['Category'].localeCompare(b['Category']));
-		let category = null;
+		if (props.isCategory) {
+			listItems.sort((a, b) =>
+				a['Category'].localeCompare(b['Category']),
+			);
+		}
+
+		let previous = null;
 
 		return (
 			<>
 				{listItems.map((api) => {
-					if (api['Category'] === category) {
-						return <Card key={api['API']}>{api}</Card>;
-					} else {
-						category = api['Category'];
-						return (
-							<>
-								{header(category)}
-								<Card key={api['API']}>{api}</Card>
-							</>
-						);
-					}
+					let current = api['Category'];
+
+					let val = (
+						<>
+							{props.isCategory &&
+								previous !== current &&
+								header(current)}
+							<Card key={api['API']}>{api}</Card>
+						</>
+					);
+
+					previous = current;
+
+					return val;
 				})}
 			</>
 		);
 	};
 
-	if (props.isCategory) {
-		return (
-			<>
-				<OptionsRow
-					shuffle={props.shuffle}
-					reset={props.reset}
-					search={props.search}
-					select={props.select}
-				/>
-				<div className='flex flex-none justify-center bg-gray-300'>
-					<div
-						className='max-w-screen-2xl flex flex-initial flex-wrap 
-                        justify-center p2 xs:p-6'
-					>
-						{output()}
-					</div>
-				</div>
-				<div className='flex flex-grow bg-gray-300' />
-			</>
-		);
-	} else {
-		return (
-			<>
-				<OptionsRow
-					shuffle={props.shuffle}
-					reset={props.reset}
-					search={props.search}
-					select={props.select}
-				/>
+	return (
+		<>
+			<OptionsRow
+				shuffle={props.shuffle}
+				reset={props.reset}
+				search={props.search}
+				select={props.select}
+			/>
+			<div
+				className='bg-gray-300 flex flex-grow
+                justify-center p-2 xs:p-6'
+			>
 				<div
-					className='bg-gray-300 flex flex-grow
-                    justify-center p-2 xs:p-6'
+					className='max-w-screen-2xl flex flex-1 flex-wrap 
+                    justify-center'
 				>
-					<div
-						className='max-w-screen-2xl flex flex-1 flex-wrap 
-                        justify-center'
-					>
-						{listItems.map((api) => (
-							<Card key={api['API']}>{api}</Card>
-						))}
-					</div>
+					{output()}
 				</div>
-			</>
-		);
-	}
+			</div>
+		</>
+	);
 }
 
 export default ListDisplay;
