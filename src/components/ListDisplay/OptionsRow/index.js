@@ -1,5 +1,3 @@
-import Button from '../../Button';
-
 function OptionsRow(props) {
 	const resultsFound = () => {
 		let text;
@@ -14,8 +12,8 @@ function OptionsRow(props) {
 
 		return (
 			<div
-				className='m-2 text-sm md:text-base w-32 text-center 
-                inline-block'
+				className='m-2 text-sm md:text-base w-32 text-center block
+                text-gray-600'
 			>
 				{text}
 			</div>
@@ -24,16 +22,40 @@ function OptionsRow(props) {
 
 	return (
 		<div
-			className='w-full p-2 flex flex-wrap bg-gray-300 justify-center 
+			className='w-full p-2 pb-0 flex flex-wrap bg-gray-300 justify-center
             items-center'
 		>
 			<div className='border-b-2 border-gray-400 border-solid'>
 				{props.search}
-				{resultsFound()}
-				<Button onClick={props.shuffle}>Shuffle APIs</Button>
-				<Button onClick={props.reset}>Reset</Button>
+				<button
+					className='p-2 rounded text-sm md:text-base text-center 
+                    inline-block focus:outline-none focus:ring mx-1'
+					onClick={props.shuffle}
+					title='Shuffle API ordering'
+				>
+					Shuffle&nbsp;
+					<svg
+						height='20'
+						viewBox='0 0 20 20'
+						fill='currentColor'
+						className='inline'
+					>
+						<path d='M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z' />
+						<path d='M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z' />
+					</svg>
+				</button>
+				<button
+					className='p-2 rounded text-sm md:text-base text-center 
+                    inline-block focus:outline-none focus:ring mx-1'
+					onClick={props.reset}
+					title='Reset API ordering'
+				>
+					Reset &#8635;
+				</button>
 				{props.select}
 			</div>
+			<div className='w-full' />
+			{resultsFound()}
 		</div>
 	);
 }

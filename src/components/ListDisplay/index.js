@@ -60,7 +60,7 @@ function ListDisplay(props) {
 			<div className='flex flex-none justify-center bg-gray-300'>
 				<div
 					className='max-w-screen-2xl flex flex-1 flex-wrap 
-                        justify-center p2 xs:p-6'
+                    justify-center px-2 xs:px-6 pb-6'
 				>
 					{output()}
 				</div>
