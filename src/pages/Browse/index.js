@@ -129,7 +129,7 @@ function Browse() {
 			onChange={(e) => handleSort(e.target.value)}
 			className='px-2 mx-2 my-4 outline-none focus:ring rounded-lg 
             hover:shadow focus:shadow cursor-pointer h-10 text-sm md:text-base 
-            bg-transparent'
+            bg-transparent w-min'
 		>
 			<option key='' value=''>
 				Sort by:
