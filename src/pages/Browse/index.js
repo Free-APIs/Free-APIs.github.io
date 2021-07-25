@@ -10,7 +10,7 @@ function Browse() {
 	const [searchText, setSearchText] = useState('');
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [sort, setSort] = useState('Category');
+	const [sort, setSort] = useState('');
 
 	const sortWays = ['Category', 'Alphabetical', 'Random'];
 
@@ -64,6 +64,11 @@ function Browse() {
 		setSort('Category');
 	};
 
+	const resetSort = () => {
+		setApis(JSON.parse(sessionStorage.getItem('data')));
+		setSort('');
+	};
+
 	const alphabet = () => {
 		let sorted = apis;
 		sorted.sort((a, b) => a['API'].localeCompare(b['API']));
@@ -75,6 +80,9 @@ function Browse() {
 		setSort(action);
 
 		switch (action) {
+			case '':
+				resetSort();
+				break;
 			case 'Category':
 				reset();
 				break;
@@ -124,9 +132,12 @@ function Browse() {
             hover:bg-gray-100 focus:bg-gray-100 cursor-pointer h-10 text-sm 
             md:text-base'
 		>
+			<option key='' value=''>
+				Sort by:
+			</option>
 			{sortWays.map((method) => (
 				<option key={method} value={method}>
-					Sort by: {method}
+					{method}
 				</option>
 			))}
 		</select>
@@ -141,10 +152,10 @@ function Browse() {
 			<Template>
 				<ListDisplay
 					shuffle={shuffle}
-					reset={reset}
+					reset={resetSort}
 					search={searchBar}
 					select={select}
-					isCategory={sort === 'Category'}
+					isCategory={sort === 'Category' || sort === ''}
 					numResults={displayList.length}
 				>
 					{displayList}
