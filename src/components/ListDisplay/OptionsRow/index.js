@@ -12,18 +12,23 @@ function OptionsRow(props) {
 			text = `${props.numResults} results found`;
 		}
 
-		return <div className='m-2 text-sm md:text-base'>{text}</div>;
+		return (
+			<div className='m-2 text-sm md:text-base w-32 text-center'>
+				{text}
+			</div>
+		);
 	};
+
 	return (
 		<div
-			className='w-full p-2 flex flex-wrap bg-gray-400 justify-center
+			className='w-full p-2 pb-0 flex flex-wrap bg-gray-300 justify-center
             items-center'
 		>
 			<Button onClick={props.shuffle}>Shuffle APIs</Button>
 			<Button onClick={props.reset}>Reset</Button>
 			{props.search}
-			{props.select}
 			{resultsFound()}
+			{props.select}
 		</div>
 	);
 }
