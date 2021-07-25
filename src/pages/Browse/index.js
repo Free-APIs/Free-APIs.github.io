@@ -116,10 +116,10 @@ function Browse() {
 
 	const searchBar = (
 		<input
-			placeholder='Search for an API'
+			placeholder='Search APIs'
 			onChange={(e) => handler(e)}
 			className='px-4 my-4 outline-none focus:ring rounded-lg
-            hover:shadow focus:shadow h-10 text-sm md:text-base mx-2'
+            hover:shadow focus:shadow w-32 h-10 text-sm md:text-base mx-2'
 		/>
 	);
 
