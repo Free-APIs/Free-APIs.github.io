@@ -118,8 +118,8 @@ function Browse() {
 		<input
 			placeholder='Search for an API'
 			onChange={(e) => handler(e)}
-			className='px-4 my-4 outline-none focus:ring rounded-lg shadow-lg
-            hover:shadow-xl focus:shadow-xl h-10 text-sm md:text-base mx-2'
+			className='px-4 my-4 outline-none focus:ring rounded-lg
+            hover:shadow focus:shadow h-10 text-sm md:text-base mx-2'
 		/>
 	);
 
@@ -127,10 +127,9 @@ function Browse() {
 		<select
 			value={sort}
 			onChange={(e) => handleSort(e.target.value)}
-			className='px-4 mx-2 my-4 outline-none focus:ring rounded-lg 
-            shadow-lg hover:shadow-xl focus:shadow-xl bg-gray-200
-            hover:bg-gray-100 focus:bg-gray-100 cursor-pointer h-10 text-sm 
-            md:text-base'
+			className='px-2 mx-2 my-4 outline-none focus:ring rounded-lg 
+            hover:shadow focus:shadow cursor-pointer h-10 text-sm md:text-base 
+            bg-transparent'
 		>
 			<option key='' value=''>
 				Sort by:

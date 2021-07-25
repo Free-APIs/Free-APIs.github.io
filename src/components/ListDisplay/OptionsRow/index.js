@@ -28,8 +28,9 @@ function OptionsRow(props) {
 			<div className='border-b-2 border-gray-400 border-solid'>
 				{props.search}
 				<button
-					className='p-2 rounded text-sm md:text-base text-center 
-                    inline-block focus:outline-none focus:ring mx-1'
+					className='p-2 rounded-lg text-sm md:text-base text-center 
+                    inline-block focus:outline-none focus:ring mx-1 
+                    hover:shadow focus:shadow'
 					onClick={props.shuffle}
 					title='Shuffle API ordering'
 				>
@@ -45,8 +46,9 @@ function OptionsRow(props) {
 					</svg>
 				</button>
 				<button
-					className='p-2 rounded text-sm md:text-base text-center 
-                    inline-block focus:outline-none focus:ring mx-1'
+					className='p-2 rounded-lg text-sm md:text-base text-center 
+                    inline-block focus:outline-none focus:ring mx-1 
+                    hover:shadow focus:shadow'
 					onClick={props.reset}
 					title='Reset API ordering'
 				>
