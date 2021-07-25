@@ -13,7 +13,10 @@ function OptionsRow(props) {
 		}
 
 		return (
-			<div className='m-2 text-sm md:text-base w-32 text-center'>
+			<div
+				className='m-2 text-sm md:text-base w-32 text-center 
+                inline-block'
+			>
 				{text}
 			</div>
 		);
@@ -21,14 +24,16 @@ function OptionsRow(props) {
 
 	return (
 		<div
-			className='w-full p-2 pb-0 flex flex-wrap bg-gray-300 justify-center
+			className='w-full p-2 flex flex-wrap bg-gray-300 justify-center 
             items-center'
 		>
-			<Button onClick={props.shuffle}>Shuffle APIs</Button>
-			<Button onClick={props.reset}>Reset</Button>
-			{props.search}
-			{resultsFound()}
-			{props.select}
+			<div className='border-b-2 border-gray-400 border-solid'>
+				{props.search}
+				{resultsFound()}
+				<Button onClick={props.shuffle}>Shuffle APIs</Button>
+				<Button onClick={props.reset}>Reset</Button>
+				{props.select}
+			</div>
 		</div>
 	);
 }
