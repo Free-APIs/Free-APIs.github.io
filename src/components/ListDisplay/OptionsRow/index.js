@@ -12,7 +12,7 @@ function OptionsRow(props) {
 
 		return (
 			<div
-				className='m-2 text-sm md:text-base w-32 text-center block
+				className='m-2 text-sm md:text-base text-center block
                 text-gray-600'
 			>
 				{text}
