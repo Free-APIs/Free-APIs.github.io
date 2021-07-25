@@ -12,13 +12,19 @@ function Nav() {
                 ml-auto mr-auto'
 			>
 				<Link to='/' replace className='h-full'>
-					<img src={logo} className='h-full' alt='placeholdersvg' />
+					<img
+						src={logo}
+						className='h-full'
+						alt='placeholdersvg'
+						title='Return home'
+					/>
 				</Link>
 				<Link
 					to='/browse'
 					replace
 					className='text-white hover:text-gray-300 hidden xs:block
                     cursor-pointer'
+					title='Browse all APIs'
 				>
 					Browse APIs
 				</Link>
@@ -27,6 +33,7 @@ function Nav() {
 					target='_blank'
 					rel='noreferrer'
 					className='text-white hover:text-gray-300 cursor-pointer'
+					title="View this project's source on GitHub!"
 				>
 					GitHub
 				</a>
