@@ -154,6 +154,7 @@ function Browse() {
 					reset={resetSort}
 					search={searchBar}
 					select={select}
+					includeSelect
 					isCategory={sort === 'Category' || sort === ''}
 					numResults={displayList.length}
 				>

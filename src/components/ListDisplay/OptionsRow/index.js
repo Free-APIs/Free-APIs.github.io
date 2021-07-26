@@ -60,7 +60,7 @@ function OptionsRow(props) {
                 justify-center items-center flex-wrap'
 			>
 				{props.search}
-				{props.select}
+				{props.includeSelect && props.select}
 				<div className='inline-block xs:hidden'>
 					<button
 						className='p-2 rounded-lg text-center mr-1 ml-3'
