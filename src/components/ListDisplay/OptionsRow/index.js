@@ -10,10 +10,13 @@ function OptionsRow(props) {
 			text = `${props.numResults} results found`;
 		}
 
+		text += ' – click to refresh';
+
 		return (
 			<div
 				className='m-2 text-sm md:text-base text-center block
-                text-gray-600'
+                text-gray-600 cursor-pointer'
+				onClick={props.refresh}
 			>
 				{text}
 			</div>

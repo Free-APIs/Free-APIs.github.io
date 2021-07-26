@@ -57,6 +57,7 @@ function ListDisplay(props) {
 				select={props.select}
 				includeSelect={props.includeSelect}
 				numResults={props.numResults}
+				refresh={props.refresh}
 			/>
 			<div className='flex flex-none justify-center bg-gray-300'>
 				<div

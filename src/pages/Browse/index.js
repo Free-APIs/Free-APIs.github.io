@@ -11,6 +11,7 @@ function Browse() {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [sort, setSort] = useState('');
+	const [refresh, setRefresh] = useState(false);
 
 	const sortWays = ['Category', 'Alphabetical', 'Random'];
 
@@ -20,7 +21,7 @@ function Browse() {
 
 		const cached = sessionStorage.getItem('data');
 
-		if (!cached) {
+		if (!cached || refresh) {
 			fetch('https://api.publicapis.org/entries')
 				.then((response) => response.json())
 				.then(
@@ -33,11 +34,12 @@ function Browse() {
 						setIsLoaded(true);
 					},
 				);
+			setRefresh(false);
 		} else {
 			setApis(JSON.parse(cached));
 			setIsLoaded(true);
 		}
-	}, []);
+	}, [refresh]);
 
 	const onSetResult = (result) => {
 		let value = result['entries'];
@@ -145,7 +147,7 @@ function Browse() {
 	if (error) {
 		return 'Error occurred';
 	} else if (!isLoaded) {
-		return 'loading screen';
+		return <Template />;
 	} else {
 		return (
 			<Template>
@@ -157,6 +159,7 @@ function Browse() {
 					includeSelect
 					isCategory={sort === 'Category' || sort === ''}
 					numResults={displayList.length}
+					refresh={() => setRefresh(true)}
 				>
 					{displayList}
 				</ListDisplay>
