@@ -76,6 +76,12 @@ function OptionsRow(props) {
 					>
 						&#8635;
 					</button>
+					<button
+						className='p-2 text-xl text-center mx-2'
+						title='More options'
+					>
+						&#9776;
+					</button>
 				</div>
 				<div className='hidden xs:inline-block'>
 					<button
@@ -93,6 +99,14 @@ function OptionsRow(props) {
 						title='Reset API ordering'
 					>
 						Reset &#8635;
+					</button>
+					<button
+						className='px-2 text-base md:text-xl text-center mx-2
+                        rounded-lg focus:outline-none focus:ring hover:shadow
+                        focus:shadow py-1'
+						title='More options'
+					>
+						&#9776;
 					</button>
 				</div>
 			</div>
