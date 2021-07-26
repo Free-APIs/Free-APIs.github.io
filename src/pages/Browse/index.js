@@ -104,6 +104,12 @@ function Browse() {
 		[],
 	);
 
+	const handleRefresh = () => {
+		setRefresh(true);
+		setSearchText('');
+		reset();
+	};
+
 	useEffect(() => {
 		const matches = (list) => {
 			return (
@@ -114,7 +120,7 @@ function Browse() {
 			);
 		};
 		setDisplayList(apis.filter(matches));
-	}, [searchText, apis]);
+	}, [searchText, apis, refresh]);
 
 	const searchBar = (
 		<input
@@ -159,7 +165,7 @@ function Browse() {
 					includeSelect
 					isCategory={sort === 'Category' || sort === ''}
 					numResults={displayList.length}
-					refresh={() => setRefresh(true)}
+					refresh={handleRefresh}
 				>
 					{displayList}
 				</ListDisplay>
