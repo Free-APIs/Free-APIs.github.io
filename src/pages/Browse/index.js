@@ -36,51 +36,39 @@ function Browse() {
 		setError(null);
 		setIsLoaded(false);
 
-		if (canStore) {
-			console.log('fetch canstore');
-			const cached = sessionStorage.getItem('data');
+		let stored;
 
-			if (!cached || refresh) {
-				console.log('in here');
-				fetch('https://api.publicapis.org/entries')
-					.then((response) => response.json())
-					.then(
-						(data) => {
-							setCache(data);
-							console.log(data);
-							setIsLoaded(true);
-						},
-						(error) => {
-							setError(error);
-							setIsLoaded(true);
-						},
-					);
-				setRefresh(false);
-			} else {
-				setApis(JSON.parse(cached));
-				setIsLoaded(true);
-			}
+		if (canStore) {
+			stored = sessionStorage.getItem('data');
 		} else {
-			if (!backup || refresh) {
-				fetch('https://api.publicapis.org/entries')
-					.then((response) => response.json())
-					.then(
-						(data) => {
+			stored = backup;
+		}
+
+		if (!stored || refresh) {
+			fetch('https://api.publicapis.org/entries')
+				.then((response) => response.json())
+				.then(
+					(data) => {
+						if (canStore) {
+							setCache(data);
+						} else {
 							handleBackup(data);
-							console.log('backup handled');
-							console.log(data);
-							setIsLoaded(true);
-						},
-						(error) => {
-							setError(error);
-							setIsLoaded(true);
-						},
-					);
-				setRefresh(false);
+						}
+						setIsLoaded(true);
+					},
+					(error) => {
+						setError(error);
+						setIsLoaded(true);
+					},
+				);
+			setRefresh(false);
+		} else {
+			if (canStore) {
+				setApis(JSON.parse(stored));
 			} else {
 				setApis(backup);
-				setIsLoaded(true);
 			}
+			setIsLoaded(true);
 		}
 	}, [refresh, canStore, backup]);
 
@@ -106,7 +94,7 @@ function Browse() {
 	};
 
 	const shuffle = () => {
-		let shuffled = apis;
+		let shuffled = [...apis];
 		for (let i = shuffled.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
 			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
