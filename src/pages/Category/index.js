@@ -10,21 +10,44 @@ function Category() {
 	const [searchText, setSearchText] = useState('');
 	const [error, setError] = useState(null);
 	const [refresh, setRefresh] = useState(false);
+	const [backup, setBackup] = useState();
+	const [canStore, setCanStore] = useState();
 
 	const category = useParams();
 
 	useEffect(() => {
+		try {
+			let storage = window['sessionStorage'];
+			let x = '__storage_test__';
+			storage.setItem(x, x);
+			storage.removeItem(x);
+			setCanStore(true);
+		} catch (e) {
+			setCanStore(false);
+		}
+	}, []);
+
+	useEffect(() => {
 		setError(null);
 
-		const cached = sessionStorage.getItem('data');
+		let stored;
 
-		if (!cached || refresh) {
-			console.log('refreshed');
+		if (canStore) {
+			stored = sessionStorage.getItem('data');
+		} else {
+			stored = backup;
+		}
+
+		if (!stored || refresh) {
 			fetch('https://api.publicapis.org/entries')
 				.then((response) => response.json())
 				.then(
 					(data) => {
-						onSetResult(data);
+						if (canStore) {
+							onSetResult(data);
+						} else {
+							onSetResultBackup(data);
+						}
 					},
 					(error) => {
 						setError(error);
@@ -32,9 +55,13 @@ function Category() {
 				);
 			setRefresh(false);
 		} else {
-			setApis(JSON.parse(cached));
+			if (canStore) {
+				setApis(JSON.parse(stored));
+			} else {
+				setApis(stored);
+			}
 		}
-	}, [refresh]);
+	}, [refresh, canStore, backup]);
 
 	const onSetResult = (result) => {
 		let value = result['entries'];
@@ -46,8 +73,17 @@ function Category() {
 		setApis(unique);
 	};
 
+	const onSetResultBackup = (result) => {
+		let value = result['entries'];
+		const unique = [
+			...new Map(value.map((api) => [api['API'], api])).values(),
+		];
+		setBackup(unique);
+		setApis(unique);
+	};
+
 	const shuffle = () => {
-		let shuffled = apis;
+		let shuffled = [...apis];
 		for (let i = shuffled.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
 			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -56,7 +92,11 @@ function Category() {
 	};
 
 	const reset = () => {
-		setApis(JSON.parse(sessionStorage.getItem('data')));
+		if (canStore) {
+			setApis(JSON.parse(sessionStorage.getItem('data')));
+		} else {
+			setApis(backup);
+		}
 	};
 
 	useEffect(() => {
