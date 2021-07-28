@@ -67,7 +67,7 @@ function ListDisplay(props) {
 					{output()}
 				</div>
 			</div>
-			<div className='flex flex-grow bg-gray-300' />
+			<div className='flex-grow' />
 		</>
 	);
 }

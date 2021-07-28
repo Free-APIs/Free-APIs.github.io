@@ -2,6 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Browse from './pages/Browse';
+import Categories from './pages/Categories';
 import Category from './pages/Category';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -15,8 +16,13 @@ function App() {
 				<Route exact path='/browse' key='browse' component={Browse} />
 				<Route
 					exact
-					path='/category'
-					key='category'
+					path='/categories'
+					key='categories'
+					component={Categories}
+				/>
+				<Route
+					exact
+					path='/categories/:category'
 					component={Category}
 				/>
 			</Switch>

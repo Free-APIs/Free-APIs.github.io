@@ -1,75 +1,48 @@
 import Template from '../Template';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import ListDisplay from '../../components/ListDisplay';
-import { debounce } from 'lodash';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function Category() {
 	const [apis, setApis] = useState([]);
 	const [displayList, setDisplayList] = useState([]);
 	const [searchText, setSearchText] = useState('');
 	const [error, setError] = useState(null);
-	const [isLoaded, setIsLoaded] = useState(false);
-	const [sort, setSort] = useState('Category');
-	const [categories, setCategories] = useState([]);
+	const [refresh, setRefresh] = useState(false);
 
-	const sortWays = ['Category', 'Alphabetical', 'Random'];
+	const category = useParams();
 
 	useEffect(() => {
 		setError(null);
-		setIsLoaded(false);
 
 		const cached = sessionStorage.getItem('data');
-		const categoryCached = sessionStorage.getItem('categories');
 
-		if (!cached) {
+		if (!cached || refresh) {
 			fetch('https://api.publicapis.org/entries')
 				.then((response) => response.json())
 				.then(
 					(data) => {
-						onSetResult(data, true);
-						setIsLoaded(true);
+						onSetResult(data);
 					},
 					(error) => {
 						setError(error);
-						setIsLoaded(true);
 					},
 				);
+			setRefresh(false);
 		} else {
 			setApis(JSON.parse(cached));
-			setIsLoaded(true);
 		}
+	}, [refresh]);
 
-		if (!categoryCached) {
-			fetch('https://api.publicapis.org/categories')
-				.then((response) => response.json())
-				.then(
-					(data) => {
-						onSetResult(data, false);
-					},
-					(error) => {
-						setError(error);
-						setIsLoaded(true);
-					},
-				);
-		} else {
-			setCategories(JSON.parse(categoryCached));
-			setIsLoaded(true);
-		}
-	}, []);
-
-	const onSetResult = (result, isAPIs) => {
-		if (isAPIs) {
-			let value = result['entries'];
-			const unique = [
-				...new Map(value.map((api) => [api['API'], api])).values(),
-			];
-			const uniqueString = JSON.stringify(unique);
-			sessionStorage.setItem('data', uniqueString);
-			setApis(unique);
-		} else {
-			sessionStorage.setItem('categories', JSON.stringify(result));
-			setCategories(result);
-		}
+	const onSetResult = (result) => {
+		let value = result['entries'];
+		const unique = [
+			...new Map(value.map((api) => [api['API'], api])).values(),
+		];
+		const uniqueString = JSON.stringify(unique);
+		sessionStorage.setItem('data', uniqueString);
+		setApis(unique);
 	};
 
 	const shuffle = () => {
@@ -79,85 +52,43 @@ function Category() {
 			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
 		}
 		setApis([...shuffled]);
-		setSort('Random');
 	};
 
 	const reset = () => {
 		setApis(JSON.parse(sessionStorage.getItem('data')));
-		setSort('Category');
 	};
-
-	const alphabet = () => {
-		let sorted = apis;
-		sorted.sort((a, b) => a['API'].localeCompare(b['API']));
-		setApis([...sorted]);
-		setSort('Alphabetical');
-	};
-
-	const handleSort = (action) => {
-		setSort(action);
-
-		switch (action) {
-			case 'Category':
-				reset();
-				break;
-			case 'Alphabetical':
-				alphabet();
-				break;
-			case 'Random':
-				shuffle();
-				break;
-			default:
-				break;
-		}
-	};
-
-	const handler = useCallback(
-		debounce((e) => setSearchText(e.target.value), 400),
-		[],
-	);
 
 	useEffect(() => {
 		const matches = (list) => {
 			return (
-				list['API'].toLowerCase().includes(searchText.toLowerCase()) ||
-				list['Description']
-					.toLowerCase()
-					.includes(searchText.toLowerCase())
+				list['Category'] === category['category'] &&
+				(list['API'].toLowerCase().includes(searchText.toLowerCase()) ||
+					list['Description']
+						.toLowerCase()
+						.includes(searchText.toLowerCase()))
 			);
 		};
 		setDisplayList(apis.filter(matches));
-	}, [searchText, apis]);
+	}, [searchText, apis, category]);
 
 	const searchBar = (
 		<input
-			placeholder='Search for an API'
-			onChange={(e) => handler(e)}
-			className='px-4 m-4 outline-none focus:ring rounded-lg shadow-lg
-            hover:shadow-xl focus:shadow-xl h-10'
+			placeholder='Search APIs'
+			onChange={(e) => setSearchText(e.target.value)}
+			value={searchText}
+			className='px-4 my-4 outline-none focus:ring rounded-lg
+            hover:shadow focus:shadow w-32 h-10 text-sm md:text-base mx-2'
 		/>
 	);
 
-	const select = (
-		<select
-			value={sort}
-			onChange={(e) => handleSort(e.target.value)}
-			className='px-4 m-4 outline-none focus:ring rounded-lg shadow-lg
-            hover:shadow-xl focus:shadow-xl bg-gray-200 hover:bg-gray-100
-            focus:bg-gray-100 cursor-pointer h-10'
-		>
-			{sortWays.map((method) => (
-				<option key={method} value={method}>
-					Sort by: {method}
-				</option>
-			))}
-		</select>
-	);
+	const handleRefresh = () => {
+		setRefresh(true);
+		setSearchText('');
+		reset();
+	};
 
 	if (error) {
 		return 'Error occurred';
-	} else if (!isLoaded) {
-		return 'loading screen';
 	} else {
 		return (
 			<Template>
@@ -165,11 +96,21 @@ function Category() {
 					shuffle={shuffle}
 					reset={reset}
 					search={searchBar}
-					select={select}
-					isCategory={sort === 'Category'}
+					isCategory
+					numResults={displayList.length}
+					refresh={handleRefresh}
 				>
 					{displayList}
 				</ListDisplay>
+				<Link className='flex justify-center text-xl' to='/categories'>
+					<div
+						className='bg-gray-200 shadow-md rounded-lg
+                        p-3 mx-4 mt-0 mb-8 cursor-pointer hover:shadow-lg
+                        hover:bg-gray-100'
+					>
+						&larr; Back to categories
+					</div>
+				</Link>
 			</Template>
 		);
 	}
