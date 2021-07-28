@@ -19,6 +19,7 @@ function Category() {
 		const cached = sessionStorage.getItem('data');
 
 		if (!cached || refresh) {
+			console.log('refreshed');
 			fetch('https://api.publicapis.org/entries')
 				.then((response) => response.json())
 				.then(
@@ -104,9 +105,9 @@ function Category() {
 				</ListDisplay>
 				<Link className='flex justify-center text-xl' to='/categories'>
 					<div
-						className='bg-gray-200 shadow-md rounded-lg
+						className='bg-gray-300 shadow-md rounded-lg
                         p-3 mx-4 mt-0 mb-8 cursor-pointer hover:shadow-lg
-                        hover:bg-gray-100'
+                        hover:bg-gray-200'
 					>
 						&larr; Back to categories
 					</div>
