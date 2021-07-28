@@ -8,15 +8,30 @@ function Categories() {
 
 	useEffect(() => {
 		setError(null);
+		let canStore;
 
-		const categoryCached = sessionStorage.getItem('categories');
+		try {
+			let storage = window['sessionStorage'];
+			let x = '__storage_test__';
+			storage.setItem(x, x);
+			storage.removeItem(x);
+			canStore = true;
+		} catch (e) {
+			canStore = false;
+		}
+
+		let categoryCached;
+
+		if (canStore) {
+			categoryCached = sessionStorage.getItem('categories');
+		}
 
 		if (!categoryCached) {
 			fetch('https://api.publicapis.org/categories')
 				.then((response) => response.json())
 				.then(
 					(data) => {
-						onSetResult(data, false);
+						setCategories(data);
 					},
 					(error) => {
 						setError(error);
@@ -26,11 +41,6 @@ function Categories() {
 			setCategories(JSON.parse(categoryCached));
 		}
 	}, []);
-
-	const onSetResult = (result, isAPIs) => {
-		sessionStorage.setItem('categories', JSON.stringify(result));
-		setCategories(result);
-	};
 
 	if (error) {
 		return (
