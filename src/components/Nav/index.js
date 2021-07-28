@@ -20,11 +20,11 @@ function Nav() {
 					/>
 				</Link>
 				<Link
-					to='/browse'
+					to='/categories'
 					replace
 					className='text-white hover:text-gray-300 hidden xs:block
                     cursor-pointer'
-					title='Browse all APIs'
+					title='Browse APIs by category'
 				>
 					Browse APIs
 				</Link>
