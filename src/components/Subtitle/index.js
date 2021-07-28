@@ -6,7 +6,7 @@ function Subtitle() {
 				href='https://github.com/public-apis/public-apis'
 				rel='noreferrer'
 				target='_blank'
-				className='underline hover:text-gray-500'
+				className='underline hover:text-gray-500 inline-block'
 			>
 				Public APIs
 			</a>
