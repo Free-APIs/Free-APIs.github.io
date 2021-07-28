@@ -32,6 +32,12 @@ function Categories() {
 				.then(
 					(data) => {
 						setCategories(data);
+						if (canStore) {
+							sessionStorage.setItem(
+								'categories',
+								JSON.stringify(data),
+							);
+						}
 					},
 					(error) => {
 						setError(error);
