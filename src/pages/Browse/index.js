@@ -6,49 +6,102 @@ import ScrollUp from '../../components/ScrollUp';
 import LoadingScreen from '../LoadingScreen';
 
 function Browse() {
-	const [apis, setApis] = useState([]);
+	const [apis, setApis] = useState();
 	const [displayList, setDisplayList] = useState([]);
 	const [searchText, setSearchText] = useState('');
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [sort, setSort] = useState('');
 	const [refresh, setRefresh] = useState(false);
+	const [canStore, setCanStore] = useState();
+	const [backup, setBackup] = useState();
 
 	const sortWays = ['Category', 'Alphabetical', 'Random'];
+
+	useEffect(() => {
+		try {
+			let storage = window['sessionStorage'];
+			let x = '__storage_test__';
+			storage.setItem(x, x);
+			storage.removeItem(x);
+			setCanStore(true);
+			console.log('can store');
+		} catch (e) {
+			setCanStore(false);
+			console.log('cant store');
+		}
+	}, []);
 
 	useEffect(() => {
 		setError(null);
 		setIsLoaded(false);
 
-		const cached = sessionStorage.getItem('data');
+		if (canStore) {
+			console.log('fetch canstore');
+			const cached = sessionStorage.getItem('data');
 
-		if (!cached || refresh) {
-			fetch('https://api.publicapis.org/entries')
-				.then((response) => response.json())
-				.then(
-					(data) => {
-						onSetResult(data);
-						setIsLoaded(true);
-					},
-					(error) => {
-						setError(error);
-						setIsLoaded(true);
-					},
-				);
-			setRefresh(false);
+			if (!cached || refresh) {
+				console.log('in here');
+				fetch('https://api.publicapis.org/entries')
+					.then((response) => response.json())
+					.then(
+						(data) => {
+							setCache(data);
+							console.log(data);
+							setIsLoaded(true);
+						},
+						(error) => {
+							setError(error);
+							setIsLoaded(true);
+						},
+					);
+				setRefresh(false);
+			} else {
+				setApis(JSON.parse(cached));
+				setIsLoaded(true);
+			}
 		} else {
-			setApis(JSON.parse(cached));
-			setIsLoaded(true);
+			if (!backup || refresh) {
+				fetch('https://api.publicapis.org/entries')
+					.then((response) => response.json())
+					.then(
+						(data) => {
+							handleBackup(data);
+							console.log('backup handled');
+							console.log(data);
+							setIsLoaded(true);
+						},
+						(error) => {
+							setError(error);
+							setIsLoaded(true);
+						},
+					);
+				setRefresh(false);
+			} else {
+				setApis(backup);
+				setIsLoaded(true);
+			}
 		}
-	}, [refresh]);
+	}, [refresh, canStore, backup]);
 
-	const onSetResult = (result) => {
+	const setCache = (result) => {
+		console.log('through cache');
 		let value = result['entries'];
 		const unique = [
 			...new Map(value.map((api) => [api['API'], api])).values(),
 		];
 		const uniqueString = JSON.stringify(unique);
 		sessionStorage.setItem('data', uniqueString);
+		setApis(unique);
+	};
+
+	const handleBackup = (result) => {
+		console.log('through state');
+		let value = result['entries'];
+		const unique = [
+			...new Map(value.map((api) => [api['API'], api])).values(),
+		];
+		setBackup(unique);
 		setApis(unique);
 	};
 
@@ -63,12 +116,20 @@ function Browse() {
 	};
 
 	const reset = () => {
-		setApis(JSON.parse(sessionStorage.getItem('data')));
+		if (canStore) {
+			setApis(JSON.parse(sessionStorage.getItem('data')));
+		} else {
+			setApis(backup);
+		}
 		setSort('Category');
 	};
 
 	const resetSort = () => {
-		setApis(JSON.parse(sessionStorage.getItem('data')));
+		if (canStore) {
+			setApis(JSON.parse(sessionStorage.getItem('data')));
+		} else {
+			setApis(backup);
+		}
 		setSort('');
 	};
 
@@ -106,6 +167,7 @@ function Browse() {
 	);
 
 	const handleRefresh = () => {
+		setIsLoaded(false);
 		setRefresh(true);
 		setSearchText('');
 		resetSort();
@@ -120,7 +182,9 @@ function Browse() {
 					.includes(searchText.toLowerCase())
 			);
 		};
-		setDisplayList(apis.filter(matches));
+		if (apis) {
+			setDisplayList(apis.filter(matches));
+		}
 	}, [searchText, apis, refresh]);
 
 	const searchBar = (
@@ -138,7 +202,7 @@ function Browse() {
 			onChange={(e) => handleSort(e.target.value)}
 			className='px-2 mx-2 my-4 outline-none focus:ring rounded-lg 
             hover:shadow focus:shadow cursor-pointer h-10 text-sm md:text-base 
-            bg-transparent w-min'
+            bg-gray-300 w-min'
 		>
 			<option key='' value=''>
 				Sort by:

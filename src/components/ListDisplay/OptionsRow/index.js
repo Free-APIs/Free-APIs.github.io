@@ -73,7 +73,7 @@ function OptionsRow(props) {
 						{largeShuffleIcon}
 					</button>
 					<button
-						className='p-2 text-xl text-center mx-1'
+						className='p-2 rounded-lg text-xl text-center mx-1'
 						onClick={props.reset}
 						title='Reset API ordering'
 					>
