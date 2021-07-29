@@ -4,8 +4,12 @@ function Footer(props) {
 	const text = () => {
 		if (props.about) {
 			return (
-				<a href='https://github.com' target='_blank' rel='noreferrer'>
-					Developed and designed by Free-APIs
+				<a
+					href='https://github.com/Free-APIs/Free-APIs.github.io/'
+					target='_blank'
+					rel='noreferrer'
+				>
+					Design and development by Free-APIs.
 				</a>
 			);
 		} else {
