@@ -16,7 +16,7 @@ function Category() {
 	const category = useParams();
 
 	useEffect(() => {
-		document.title = `Free APIs  |  ${category['category']}`;
+		document.title = `${category['category']} - Free APIs`;
 	});
 
 	useEffect(() => {

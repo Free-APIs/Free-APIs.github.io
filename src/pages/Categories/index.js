@@ -7,7 +7,7 @@ function Categories() {
 	const [error, setError] = useState();
 
 	useEffect(() => {
-		document.title = 'Free APIs  |  API categories';
+		document.title = 'API categories - Free APIs';
 	}, []);
 
 	useEffect(() => {

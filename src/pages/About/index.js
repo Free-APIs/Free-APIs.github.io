@@ -4,7 +4,7 @@ import logo from '../../logo.svg';
 
 function About() {
 	useEffect(() => {
-		document.title = 'Free APIs  |  About';
+		document.title = 'About - Free APIs';
 	});
 
 	return (

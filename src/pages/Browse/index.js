@@ -19,7 +19,7 @@ function Browse() {
 	const sortWays = ['Category', 'Alphabetical', 'Random'];
 
 	useEffect(() => {
-		document.title = 'Free APIs  |  Browse all';
+		document.title = 'Browse all - Free APIs';
 	}, []);
 
 	useEffect(() => {
