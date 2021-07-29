@@ -6,6 +6,7 @@ import Categories from './pages/Categories';
 import Category from './pages/Category';
 import ScrollToTop from './components/ScrollToTop';
 import Tracking from './components/Tracking';
+import NotFound from './pages/NotFound';
 
 function App() {
 	Tracking();
@@ -28,6 +29,7 @@ function App() {
 					path='/categories/:category'
 					component={Category}
 				/>
+				<Route path='*' key='404' component={NotFound} />
 			</Switch>
 		</>
 	);

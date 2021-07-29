@@ -1,4 +1,4 @@
-import logo from '../../logo.svg';
+import page from './page.png';
 import Subtitle from '../Subtitle';
 import ButtonRows from './ButtonRows';
 
@@ -15,7 +15,13 @@ function Jumbotron() {
 				Free APIs
 			</div>
 			<Subtitle />
-			<img src={logo} className='max-h-96' alt='placeholdersvg' />
+			<div className='mx-6'>
+				<img
+					src={page}
+					className='max-h-96 rounded-lg shadow-xl'
+					alt='Development APIs'
+				/>
+			</div>
 			<ButtonRows />
 		</div>
 	);
