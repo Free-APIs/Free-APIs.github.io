@@ -7,6 +7,10 @@ function Categories() {
 	const [error, setError] = useState();
 
 	useEffect(() => {
+		document.title = 'Free APIs  |  API categories';
+	}, []);
+
+	useEffect(() => {
 		setError(null);
 		let canStore;
 

@@ -16,6 +16,10 @@ function Category() {
 	const category = useParams();
 
 	useEffect(() => {
+		document.title = `Free APIs  |  ${category['category']}`;
+	});
+
+	useEffect(() => {
 		try {
 			let storage = window['sessionStorage'];
 			let x = '__storage_test__';

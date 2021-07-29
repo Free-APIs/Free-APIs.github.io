@@ -19,6 +19,10 @@ function Browse() {
 	const sortWays = ['Category', 'Alphabetical', 'Random'];
 
 	useEffect(() => {
+		document.title = 'Free APIs  |  Browse all';
+	}, []);
+
+	useEffect(() => {
 		try {
 			let storage = window['sessionStorage'];
 			let x = '__storage_test__';
