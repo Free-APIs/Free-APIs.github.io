@@ -30,12 +30,12 @@ function Nav() {
 					Browse APIs
 				</Link>
 				<a
-					href='https://google.com'
+					href='https://github.com/Free-APIs/Free-APIs.github.io'
 					target='_blank'
 					rel='noreferrer'
 					className='text-white hover:text-gray-300 cursor-pointer 
                     h-3/5'
-					title="View this project's source on GitHub!"
+					title="View this project's source on GitHub"
 				>
 					<img src={githubIcon} className='h-full' alt='GitHub' />
 				</a>
