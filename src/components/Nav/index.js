@@ -1,4 +1,5 @@
 import logo from '../../logo.svg';
+import githubIcon from './github.svg';
 import { Link } from 'react-router-dom';
 
 function Nav() {
@@ -11,7 +12,7 @@ function Nav() {
 				className='flex max-w-3xl justify-between items-center h-full
                 ml-auto mr-auto'
 			>
-				<Link to='/' replace className='h-full'>
+				<Link to='/' replace className='h-4/5'>
 					<img
 						src={logo}
 						className='h-full'
@@ -32,10 +33,11 @@ function Nav() {
 					href='https://google.com'
 					target='_blank'
 					rel='noreferrer'
-					className='text-white hover:text-gray-300 cursor-pointer'
+					className='text-white hover:text-gray-300 cursor-pointer 
+                    h-3/5'
 					title="View this project's source on GitHub!"
 				>
-					GitHub
+					<img src={githubIcon} className='h-full' alt='GitHub' />
 				</a>
 			</div>
 		</div>
