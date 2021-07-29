@@ -8,7 +8,7 @@ function Tracking() {
 
 	useEffect(() => {
 		if (!window.location.href.includes('localhost')) {
-			ReactGA.initialize('UA-000000000-0');
+			ReactGA.initialize('UA-203532673-2');
 		}
 		setInitialized(true);
 	}, []);
