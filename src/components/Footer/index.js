@@ -13,7 +13,7 @@ function Footer(props) {
 				</a>
 			);
 		} else {
-			return <Link to='about'>About this project</Link>;
+			return <Link to='/about'>About this project</Link>;
 		}
 	};
 
