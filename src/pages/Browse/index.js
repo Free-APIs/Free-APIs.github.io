@@ -29,10 +29,8 @@ function Browse() {
 			storage.setItem(x, x);
 			storage.removeItem(x);
 			setCanStore(true);
-			console.log('can store');
 		} catch (e) {
 			setCanStore(false);
-			console.log('cant store');
 		}
 	}, []);
 
@@ -77,7 +75,6 @@ function Browse() {
 	}, [refresh, canStore, backup]);
 
 	const setCache = (result) => {
-		console.log('through cache');
 		let value = result['entries'];
 		const unique = [
 			...new Map(value.map((api) => [api['API'], api])).values(),
@@ -88,7 +85,6 @@ function Browse() {
 	};
 
 	const handleBackup = (result) => {
-		console.log('through state');
 		let value = result['entries'];
 		const unique = [
 			...new Map(value.map((api) => [api['API'], api])).values(),
