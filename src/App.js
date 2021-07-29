@@ -5,8 +5,11 @@ import Browse from './pages/Browse';
 import Categories from './pages/Categories';
 import Category from './pages/Category';
 import ScrollToTop from './components/ScrollToTop';
+import Tracking from './components/Tracking';
 
 function App() {
+	Tracking();
+
 	return (
 		<>
 			<ScrollToTop />
