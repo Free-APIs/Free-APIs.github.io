@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Template from '../Template';
+import logo from '../../logo.svg';
 
 function About() {
 	useEffect(() => {
@@ -17,6 +18,7 @@ function About() {
 					<div className='text-2xl xs:text-3xl m-2'>
 						About Free APIs
 					</div>
+					<img src={logo} className='m-2 h-44' alt='logo' />
 					<div
 						className='m-2 italic text-gray-600 mb-6 text-center 
                         text-sm xs:text-base'
