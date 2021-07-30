@@ -14,11 +14,7 @@ function Button(props) {
 	);
 
 	if (props.to !== undefined) {
-		return (
-			<Link to={props.to} replace>
-				{output}
-			</Link>
-		);
+		return <Link to={props.to}>{output}</Link>;
 	} else {
 		return output;
 	}

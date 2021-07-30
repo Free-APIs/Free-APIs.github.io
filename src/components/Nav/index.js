@@ -12,7 +12,7 @@ function Nav() {
 				className='flex max-w-3xl justify-between items-center h-full
                 ml-auto mr-auto'
 			>
-				<Link to='/' replace className='h-4/5'>
+				<Link to='/' className='h-4/5'>
 					<img
 						src={logo}
 						className='h-full'
@@ -22,7 +22,6 @@ function Nav() {
 				</Link>
 				<Link
 					to='/categories'
-					replace
 					className='text-white hover:text-gray-300 hidden xs:block
                     cursor-pointer'
 					title='Browse APIs by category'
