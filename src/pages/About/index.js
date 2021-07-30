@@ -28,11 +28,11 @@ function About() {
 					<div className='text-lg xs:text-xl m-2 text-gray-700'>
 						This React.js project houses a clean, minimalist user
 						interface for exploring and accessing APIs. As a
-						software developer looking for more things to build,
-						such a collection brings me the inspiration I need to
-						explore new ideas and sources of content. And in making
-						this, I've strived for simple design, accessibility, and
-						intuitive use –&nbsp;
+						software developer looking for more things to build, I
+						made this collection to easily discover new project
+						ideas and sources of content. And in doing so, I've
+						strived for simple design, accessibility, and intuitive
+						use –&nbsp;
 						<div className='text-gray-800 inline font-medium'>
 							because that's what the best things are.
 						</div>
