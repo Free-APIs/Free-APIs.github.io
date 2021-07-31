@@ -1,5 +1,22 @@
+import { useCallback, useRef, useState } from 'react';
+
 function ScrollUp() {
-	return (
+	const [showScroll, setShowScroll] = useState(false);
+
+	const observer = useRef();
+	const scrolledEnough = useCallback((node) => {
+		if (observer.current) observer.current.disconnect();
+		observer.current = new IntersectionObserver((entries) => {
+			if (entries[0].isIntersecting) {
+				setShowScroll(false);
+			} else {
+				setShowScroll(true);
+			}
+		});
+		if (node) observer.current.observe(node);
+	}, []);
+
+	let button = (
 		<div
 			className='rounded-full h-12 w-12 text-gray-200 bg-gradient-to-r
             from-gray-700 to-gray-800 fixed xs:bottom-0 right-0 m-8 text-lg 
@@ -9,6 +26,17 @@ function ScrollUp() {
 		>
 			&uarr;
 		</div>
+	);
+
+	return (
+		<>
+			<div className='absolute'>
+				<div className='w-0 h-96' />
+				<div className='w-0 h-96' />
+				<div className='sticky bottom-0' ref={scrolledEnough} />
+			</div>
+			{showScroll && button}
+		</>
 	);
 }
 
