@@ -1,9 +1,42 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState, useCallback, useRef } from 'react';
 import Card from './Card';
 import OptionsRow from './OptionsRow';
 
 function ListDisplay(props) {
 	let listItems = props.children;
+	const [display, setDisplay] = useState([]);
+
+	useEffect(() => {
+		if (listItems) {
+			setDisplay(listItems.slice(0, 15));
+		}
+	}, [listItems]);
+
+	const observer = useRef();
+	const lastElementRef = useCallback(
+		(node) => {
+			if (!display) return;
+			if (observer.current) observer.current.disconnect();
+			observer.current = new IntersectionObserver((entries) => {
+				if (entries[0].isIntersecting) {
+					if (display.length + 15 < listItems.length) {
+						setDisplay(
+							display.concat(
+								listItems.slice(
+									display.length,
+									display.length + 15,
+								),
+							),
+						);
+					} else {
+						setDisplay(listItems);
+					}
+				}
+			});
+			if (node) observer.current.observe(node);
+		},
+		[display, listItems],
+	);
 
 	const header = (categoryTitle) => (
 		<div className='w-full flex'>
@@ -28,15 +61,26 @@ function ListDisplay(props) {
 
 		return (
 			<>
-				{listItems.map((api) => {
+				{display.map((api, index) => {
 					let current = api['Category'];
+					let card;
+
+					if (display.length === index + 1) {
+						card = (
+							<Card key={api['API']} passedRef={lastElementRef}>
+								{api}
+							</Card>
+						);
+					} else {
+						card = <Card key={api['API']}>{api}</Card>;
+					}
 
 					let val = (
 						<Fragment key={api['API']}>
 							{props.isCategory &&
 								previous !== current &&
 								header(current)}
-							<Card key={api['API']}>{api}</Card>
+							{card}
 						</Fragment>
 					);
 

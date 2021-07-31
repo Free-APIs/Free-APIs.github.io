@@ -37,6 +37,7 @@ function Card(props) {
 	return (
 		<a
 			href={link}
+			ref={props.passedRef}
 			target='_blank'
 			rel='noreferrer'
 			className='rounded-lg bg-gray-200 p-4 m-3 shadow-lg break-words w-72
