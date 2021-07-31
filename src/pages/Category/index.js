@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import ListDisplay from '../../components/ListDisplay';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import ScrollUp from '../../components/ScrollUp';
 
 function Category() {
 	const [apis, setApis] = useState([]);
@@ -156,6 +157,7 @@ function Category() {
 						&larr; Back to categories
 					</div>
 				</Link>
+				<ScrollUp />
 			</Template>
 		);
 	}
