@@ -16,7 +16,7 @@ function Nav() {
 					<img
 						src={logo}
 						className='h-9 w-9'
-						alt='placeholdersvg'
+						alt='logo'
 						title='Return home'
 					/>
 				</Link>
