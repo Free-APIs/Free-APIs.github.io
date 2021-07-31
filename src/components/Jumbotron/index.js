@@ -1,11 +1,7 @@
-import page from './page.png';
 import Subtitle from '../Subtitle';
 import ButtonRows from './ButtonRows';
-import { useState } from 'react';
 
 function Jumbotron() {
-	const [loaded, setLoaded] = useState(false);
-
 	return (
 		<>
 			<div
@@ -19,15 +15,6 @@ function Jumbotron() {
 					Free APIs
 				</div>
 				<Subtitle />
-				<div className='mx-6 shadow-xl max-h-96'>
-					{!loaded && <div className='h-screen max-h-52' />}
-					<img
-						src={page}
-						className={`max-h-96 rounded-lg ${!loaded && 'hidden'}`}
-						alt='Development APIs'
-						onLoad={() => setLoaded(true)}
-					/>
-				</div>
 				<ButtonRows />
 			</div>
 			<div className='flex-grow max-h-10' />
