@@ -1,5 +1,5 @@
 import Template from '../Template';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import ListDisplay from '../../components/ListDisplay';
 import { debounce } from 'lodash';
 import ScrollUp from '../../components/ScrollUp';
@@ -149,11 +149,6 @@ function Browse() {
 		}
 	};
 
-	const handler = useCallback(
-		debounce((e) => setSearchText(e.target.value), 400),
-		[],
-	);
-
 	const handleRefresh = () => {
 		setIsLoaded(false);
 		setRefresh(true);
@@ -178,7 +173,7 @@ function Browse() {
 	const searchBar = (
 		<input
 			placeholder='Search APIs'
-			onChange={(e) => handler(e)}
+			onChange={debounce((e) => setSearchText(e.target.value), 400)}
 			className='px-4 my-4 outline-none focus:ring rounded-lg
             hover:shadow focus:shadow w-32 h-10 text-sm md:text-base mx-2'
 		/>
