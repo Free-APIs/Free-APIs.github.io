@@ -9,7 +9,7 @@ function ButtonRows() {
 				to='/browse'
 				src={browseAll}
 				alt='Browse All APIs'
-				color='green'
+				color='bg-green-400 group-hover:bg-green-300'
 			>
 				Browse all APIs
 			</Button>
@@ -17,7 +17,7 @@ function ButtonRows() {
 				to='/categories'
 				src={browseCategory}
 				alt='Browse Categories'
-				color='blue'
+				color='bg-blue-400 group-hover:bg-blue-300'
 			>
 				Explore by category
 			</Button>
