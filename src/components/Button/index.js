@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 
 function Button(props) {
+	const colorString = `bg-${props.color}-400 
+    group-hover:bg-${props.color}-300`;
+
 	return (
 		<Link
 			to={props.to}
@@ -10,8 +13,7 @@ function Button(props) {
 			<img
 				src={props.src}
 				alt={props.alt}
-				className={`w-full h-72 rounded-t-lg bg-${props.color}-400 
-                group-hover:bg-${props.color}-300 p-6`}
+				className={'w-full h-72 rounded-t-lg p-6 ' + colorString}
 			/>
 			<div
 				className='bg-gray-200 group-hover:bg-gray-100 rounded-b-lg
