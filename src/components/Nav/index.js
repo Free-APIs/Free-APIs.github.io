@@ -12,12 +12,13 @@ function Nav() {
 				className='flex max-w-3xl justify-between items-center h-full
                 ml-auto mr-auto'
 			>
-				<Link to='/' className='h-9 w-9'>
+				<Link to='/'>
 					<img
 						src={logo}
-						className='h-9 w-9'
 						alt='logo'
 						title='Return home'
+						height='36'
+						width='36'
 					/>
 				</Link>
 				<Link
@@ -32,10 +33,10 @@ function Nav() {
 					href='https://github.com/Free-APIs/Free-APIs.github.io'
 					target='_blank'
 					rel='noreferrer'
-					className='text-white hover:text-gray-300 cursor-pointer w-7 h-7'
+					className='text-white hover:text-gray-300 cursor-pointer'
 					title='View source on GitHub'
 				>
-					<img src={githubIcon} className='h-7 w-7' alt='GitHub' />
+					<img src={githubIcon} alt='GitHub' height='28' width='28' />
 				</a>
 			</div>
 		</div>
