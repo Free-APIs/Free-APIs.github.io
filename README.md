@@ -12,6 +12,6 @@ Free APIs houses a list of APIs in a blazing fast website. There are two main mo
 
 _That's the ultimate goal._ A quick resource for finding APIs and their links. To discover new ideas, get inspiration, or find that missing puzzle piece to your project. I've made the site with this in mind, employing a modern, accessible, and intuitive design.
 
-If you have any suggestions, optimizations, or improvements, go ahead and [**open a GitHub issue**](https://github.com/Free-APIs/Free-APIs.github.io/issues). And if you'd like to get in touch, **[feel free to reach out!](mailto:freeapis256@gmail.com?subject=Hey there!)**
+If you have any suggestions, optimizations, or improvements, go ahead and [**open a GitHub issue**](https://github.com/Free-APIs/Free-APIs.github.io/issues). And if you'd like to get in touch, [**feel free to reach out!**](mailto:freeapis256@gmail.com?subject=Hey%20there!)
 
 Check out the website [_here_](https://free-apis.github.io).
