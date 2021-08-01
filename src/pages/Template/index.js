@@ -8,6 +8,7 @@ function Template(props) {
             bg-gray-300'
 		>
 			<Nav />
+			<main className='w-0 h-0' />
 			{props.children}
 			<Footer about={props.about} />
 		</div>
