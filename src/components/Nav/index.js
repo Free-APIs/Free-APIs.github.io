@@ -12,32 +12,36 @@ function Nav() {
 				className='flex max-w-3xl justify-between items-center h-full
                 ml-auto mr-auto'
 			>
-				<Link to='/'>
-					<img
-						src={logo}
-						alt='logo'
-						title='Return home'
-						height='36'
-						width='36'
-					/>
-				</Link>
-				<Link
-					to='/categories'
-					className='text-white hover:text-gray-300 hidden xs:block
-                    cursor-pointer'
-					title='Browse APIs by category'
-				>
-					Browse APIs
+				<Link to='/' className='z-10 group'>
+					<div className='flex items-center' title='Return home'>
+						<img src={logo} alt='logo' height='36' width='36' />
+						<div className='text-white group-hover:text-gray-300'>
+							&nbsp;&nbsp;Home
+						</div>
+					</div>
 				</Link>
 				<a
 					href='https://github.com/Free-APIs/Free-APIs.github.io'
 					target='_blank'
 					rel='noreferrer'
-					className='text-white hover:text-gray-300 cursor-pointer'
+					className='text-white hover:text-gray-300 cursor-pointer 
+                    z-10'
 					title='View source on GitHub'
 				>
 					<img src={githubIcon} alt='GitHub' height='28' width='28' />
 				</a>
+			</div>
+			<div
+				className='hidden xs:block absolute top-0 left-0 
+                    text-center my-4 py-2.5 w-full z-0'
+			>
+				<Link
+					to='/categories'
+					title='Browse APIs by category'
+					className='text-white hover:text-gray-300 z-10'
+				>
+					Browse APIs
+				</Link>
 			</div>
 		</div>
 	);
