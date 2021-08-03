@@ -7,6 +7,7 @@ import Category from './pages/Category';
 import ScrollToTop from './components/ScrollToTop';
 import Tracking from './components/Tracking';
 import NotFound from './pages/NotFound';
+import HelpPage from './pages/HelpPage';
 
 function App() {
 	Tracking();
@@ -29,6 +30,7 @@ function App() {
 					path='/categories/:category'
 					component={Category}
 				/>
+				<Route exact path='/help' component={HelpPage} />
 				<Route path='*' key='404' component={NotFound} />
 			</Switch>
 		</>

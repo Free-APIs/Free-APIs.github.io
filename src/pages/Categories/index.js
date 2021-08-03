@@ -2,6 +2,7 @@ import Template from '../Template';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollUp from '../../components/ScrollUp';
+import Help from '../../components/Help';
 
 function Categories() {
 	const [categories, setCategories] = useState([]);
@@ -108,6 +109,7 @@ function Categories() {
 				</div>
 				<div className='flex-grow' />
 				<ScrollUp />
+				<Help />
 			</Template>
 		);
 	}

@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState, useCallback, useRef } from 'react';
+import Help from '../Help';
 import Card from './Card';
 import OptionsRow from './OptionsRow';
 
@@ -111,6 +112,7 @@ function ListDisplay(props) {
 					{output()}
 				</div>
 			</div>
+			<Help />
 			<div className='flex-grow' />
 		</>
 	);

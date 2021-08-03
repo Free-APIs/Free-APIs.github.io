@@ -20,9 +20,9 @@ function ScrollUp() {
 	let button = (
 		<div
 			className='rounded-full h-12 w-12 text-gray-200 bg-gradient-to-r
-            from-gray-700 to-gray-800 fixed xs:bottom-0 right-0 m-8 text-lg 
-            cursor-pointer flex justify-center items-center shadow-lg bottom-10
-            hover:shadow-xl hover:from-gray-600'
+            from-gray-700 to-gray-800 fixed xs:bottom-20 right-0 m-8 text-lg 
+            cursor-pointer flex justify-center items-center shadow-lg bottom-28
+            hover:shadow-xl hover:from-gray-600 animate-fade-in-up'
 			onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 		>
 			&uarr;
