@@ -37,11 +37,11 @@ function Categories() {
 				.then((response) => response.json())
 				.then(
 					(data) => {
-						setCategories(data);
+						setCategories(data.categories);
 						if (canStore) {
 							sessionStorage.setItem(
 								'categories',
-								JSON.stringify(data),
+								JSON.stringify(data.categories),
 							);
 						}
 					},
