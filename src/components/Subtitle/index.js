@@ -10,6 +10,15 @@ function Subtitle() {
 			>
 				Public APIs
 			</a>
+			{' '}+{' '}
+			<a
+				href='https://github.com/public-apis-dev/public-apis'
+				rel='noreferrer'
+				target='_blank'
+				className='underline hover:text-gray-500 inline-block'
+			>
+				Public APIs Dev
+			</a>
 		</p>
 	);
 }
