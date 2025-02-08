@@ -6,22 +6,29 @@ _A collection of free APIs for new and experienced developers, derived from [Pub
 
 This project was built in React.js using [Create React App](https://github.com/facebook/create-react-app) and [Tailwind CSS](https://tailwindcss.com) for styling.
 
-## Quick Overview
+## Quick Overview of Free APIs
 
-Free APIs houses a list of APIs in a blazing fast website. There are two main modes:
+• Free APIs offers a fast website with a comprehensive list of APIs.
 
-1.  View them all at once
+• View All APIs:
 
-    Useful when looking for new project ideas and getting the right API as a content source, as well as for searching the full collection and checking the authorization method, CORS, and HTTPS.
+    • Ideal for discovering new project ideas.
 
-2.  View APIs by category
+    • Helps in checking **CORS**, **HTTPS**, and **Authorization** methods.
 
-    This mode lets you narrow it down further and gain more control in your searches and browsing.
+• View by Category:
 
-Clicking on any of the cards takes you to the respective API website or documentation.
+    • Allows for more targeted searches and browsing.
 
-_That's the ultimate goal._ A quick resource for finding APIs and their links. To discover new ideas, get inspiration, or find that missing puzzle piece to your project. I've made the site with this in mind, employing a modern, accessible, and intuitive design.
+    • Each card links to the respective API documentation or website.
 
-If you have any suggestions, optimizations, or improvements, go ahead and [**open a GitHub issue**](https://github.com/Free-APIs/Free-APIs.github.io/issues). And if you'd like to get in touch, [**feel free to reach out!**](mailto:freeapis256@gmail.com?subject=Hey%20there!)
+_That's the ultimate goal._
 
-### Check out the website [_here_](https://free-apis.github.io).
+• The site aims to be a quick resource for finding APIs and inspiration for projects.
+
+• Feedback is welcome via
+[**open a GitHub issue**](https://github.com/Free-APIs/Free-APIs.github.io/issues)
+
+• For inquiries, users are encouraged to reach out [**feel free to reach out!**](mailto:freeapis256@gmail.com?subject=Hey%20there!)
+
+### Check out the website [_here_](https://free-apis.github.io) for more information.
