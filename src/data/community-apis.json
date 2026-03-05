@@ -1,0 +1,38 @@
+[
+	{
+		"API": "IP Geolocation API",
+		"Description": "Returns country, city, ISP, coordinates, and timezone for any IP address",
+		"Auth": "apiKey",
+		"HTTPS": true,
+		"Cors": "yes",
+		"Link": "https://api-catalog-three.vercel.app/services/ip-geolocation-api",
+		"Category": "Geocoding"
+	},
+	{
+		"API": "Frostbyte Crypto Price API",
+		"Description": "Real-time prices, market cap, and 24h changes for 150+ cryptocurrencies",
+		"Auth": "apiKey",
+		"HTTPS": true,
+		"Cors": "yes",
+		"Link": "https://api-catalog-three.vercel.app/services/crypto-price-api",
+		"Category": "Cryptocurrency"
+	},
+	{
+		"API": "Frostbyte Screenshot API",
+		"Description": "Capture full-page or viewport website screenshots programmatically",
+		"Auth": "apiKey",
+		"HTTPS": true,
+		"Cors": "yes",
+		"Link": "https://api-catalog-three.vercel.app/services/screenshot-api",
+		"Category": "Development"
+	},
+	{
+		"API": "Frostbyte Web Scraping API",
+		"Description": "Extract structured data from any webpage using CSS selectors",
+		"Auth": "apiKey",
+		"HTTPS": true,
+		"Cors": "yes",
+		"Link": "https://api-catalog-three.vercel.app/services/web-scraping-api",
+		"Category": "Development"
+	}
+]

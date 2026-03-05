@@ -4,6 +4,7 @@ import ListDisplay from '../../components/ListDisplay';
 import { debounce } from 'lodash';
 import ScrollUp from '../../components/ScrollUp';
 import LoadingScreen from '../LoadingScreen';
+import communityApis from '../../data/community-apis.json';
 
 function Browse() {
 	const [apis, setApis] = useState();
@@ -74,11 +75,16 @@ function Browse() {
 		}
 	}, [refresh, canStore, backup]);
 
+	const mergeWithCommunity = (entries) => {
+		const combined = [...entries, ...communityApis];
+		return [
+			...new Map(combined.map((api) => [api['API'], api])).values(),
+		];
+	};
+
 	const setCache = (result) => {
 		let value = result['entries'];
-		const unique = [
-			...new Map(value.map((api) => [api['API'], api])).values(),
-		];
+		const unique = mergeWithCommunity(value);
 		const uniqueString = JSON.stringify(unique);
 		sessionStorage.setItem('data', uniqueString);
 		setApis(unique);
@@ -86,9 +92,7 @@ function Browse() {
 
 	const handleBackup = (result) => {
 		let value = result['entries'];
-		const unique = [
-			...new Map(value.map((api) => [api['API'], api])).values(),
-		];
+		const unique = mergeWithCommunity(value);
 		setBackup(unique);
 		setApis(unique);
 	};
