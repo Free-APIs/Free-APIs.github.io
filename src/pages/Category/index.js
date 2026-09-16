@@ -4,6 +4,7 @@ import ListDisplay from '../../components/ListDisplay';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import ScrollUp from '../../components/ScrollUp';
+import communityApis from '../../data/community-apis.json';
 
 function Category() {
   const [apis, setApis] = useState([]);
@@ -72,11 +73,16 @@ function Category() {
     }
   }, [refresh, canStore, backup]);
 
+  const mergeWithCommunity = (entries) => {
+    const combined = [...entries, ...communityApis];
+    return [
+      ...new Map(combined.map((api) => [api['API'], api])).values(),
+    ];
+  };
+
   const onSetResult = (result) => {
     let value = result['entries'];
-    const unique = [
-      ...new Map(value.map((api) => [api['API'], api])).values(),
-    ];
+    const unique = mergeWithCommunity(value);
     const uniqueString = JSON.stringify(unique);
     sessionStorage.setItem('data', uniqueString);
     setApis(unique);
@@ -84,9 +90,7 @@ function Category() {
 
   const onSetResultBackup = (result) => {
     let value = result['entries'];
-    const unique = [
-      ...new Map(value.map((api) => [api['API'], api])).values(),
-    ];
+    const unique = mergeWithCommunity(value);
     setBackup(unique);
     setApis(unique);
   };

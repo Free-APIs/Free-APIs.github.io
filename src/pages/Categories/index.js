@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollUp from '../../components/ScrollUp';
 import Help from '../../components/Help';
+import communityApis from '../../data/community-apis.json';
 
 function Categories() {
 	const [categories, setCategories] = useState([]);
@@ -32,16 +33,23 @@ function Categories() {
 			categoryCached = sessionStorage.getItem('categories');
 		}
 
+		const communityCategories = [
+			...new Set(communityApis.map((api) => api.Category)),
+		];
+
 		if (!categoryCached) {
 			fetch('https://api.publicapis.org/categories')
 				.then((response) => response.json())
 				.then(
 					(data) => {
-						setCategories(data.categories);
+						const merged = [
+							...new Set([...data.categories, ...communityCategories]),
+						].sort();
+						setCategories(merged);
 						if (canStore) {
 							sessionStorage.setItem(
 								'categories',
-								JSON.stringify(data.categories),
+								JSON.stringify(merged),
 							);
 						}
 					},

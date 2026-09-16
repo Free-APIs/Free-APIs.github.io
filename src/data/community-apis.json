@@ -1,0 +1,11 @@
+[
+	{
+		"API": "Deep Blue Alpha",
+		"Description": "Real-time Ethereum whale wallet tracking with 20,000+ wallets, DEX trades, net flow, and conviction scoring",
+		"Auth": "apiKey",
+		"HTTPS": true,
+		"Cors": "yes",
+		"Link": "https://deepbluealpha.io/whale-api",
+		"Category": "Cryptocurrency"
+	}
+]
